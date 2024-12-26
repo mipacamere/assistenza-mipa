@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invia Messaggi Personalizzati</title>
+</head>
+<body>
+    <h1>Invia Auguri di Natale</h1>
+    <form id="messageForm">
+        <label for="contacts">Inserisci i numeri di telefono (separati da virgola):</label>
+        <textarea id="contacts" placeholder="Es: 391234567890,392345678901" required></textarea>
+        <br><br>
+        <label for="message">Messaggio:</label>
+        <textarea id="message" placeholder="Scrivi il messaggio" required>Ciao [NOME], Buon Natale!</textarea>
+        <br><br>
+        <button type="button" onclick="generateLinks()">Genera Link</button>
+    </form>
+    <div id="links"></div>
+
+    <script>
+        function generateLinks() {
+            const contacts = document.getElementById('contacts').value.split(',');
+            const messageTemplate = document.getElementById('message').value;
+            const linksContainer = document.getElementById('links');
+            linksContainer.innerHTML = '';
+
+            contacts.forEach(contact => {
+                const number = contact.trim();
+                const name = number; // Qui puoi associare manualmente un nome se necessario
+                const message = messageTemplate.replace('[NOME]', name);
+                const encodedMessage = encodeURIComponent(message);
+                const link = `https://wa.me/${number}?text=${encodedMessage}`;
+
+                const linkElement = document.createElement('a');
+                linkElement.href = link;
+                linkElement.target = '_blank';
+                linkElement.textContent = `Invia a ${name}`;
+                linksContainer.appendChild(linkElement);
+                linksContainer.appendChild(document.createElement('br'));
+            });
+        }
+    </script>
+</body>
+</html>
