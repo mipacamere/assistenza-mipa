@@ -3,43 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invia Messaggi Personalizzati</title>
+    <title>Invia Auguri Personalizzati</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .contacts-list {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .contact {
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
     <h1>Invia Auguri di Natale</h1>
     <form id="messageForm">
-        <label for="contacts">Inserisci i numeri di telefono (separati da virgola):</label>
-        <textarea id="contacts" placeholder="Es: 391234567890,392345678901" required></textarea>
-        <br><br>
         <label for="message">Messaggio:</label>
-        <textarea id="message" placeholder="Scrivi il messaggio" required>Ciao [NOME], Buon Natale!</textarea>
-        <br><br>
+        <textarea id="message" placeholder="Scrivi il messaggio con [NOME]" required>Ciao [NOME], Buon Natale!</textarea>
         <button type="button" onclick="generateLinks()">Genera Link</button>
     </form>
-    <div id="links"></div>
+
+    <div class="contacts-list">
+        <h2>Seleziona Destinatari</h2>
+        <div id="contacts">
+            <!-- La lista dei contatti sarà generata dinamicamente -->
+        </div>
+    </div>
+
+    <div id="links" class="contacts-list" style="display:none;">
+        <h2>Link Generati</h2>
+        <div id="generatedLinks"></div>
+    </div>
 
     <script>
-        function generateLinks() {
-            const contacts = document.getElementById('contacts').value.split(',');
-            const messageTemplate = document.getElementById('message').value;
-            const linksContainer = document.getElementById('links');
-            linksContainer.innerHTML = '';
+        // Lista dei contatti precompilata
+        const contacts = [
+            { name: "Mario Rossi", phone: "391234567890" },
+            { name: "Luca Bianchi", phone: "392345678901" },
+            { name: "Anna Verdi", phone: "393456789012" },
+            { name: "Giulia Neri", phone: "394567890123" }
+        ];
 
-            contacts.forEach(contact => {
-                const number = contact.trim();
-                const name = number; // Qui puoi associare manualmente un nome se necessario
-                const message = messageTemplate.replace('[NOME]', name);
-                const encodedMessage = encodeURIComponent(message);
-                const link = `https://wa.me/${number}?text=${encodedMessage}`;
+        // Funzione per generare la lista dei contatti
+        function loadContacts() {
+            const contactsDiv = document.getElementById('contacts');
+            contacts.forEach((contact, index) => {
+                const contactElement = document.createElement('div');
+                contactElement.className = 'contact';
+                contactElement.innerHTML = `
+                    <input type="checkbox" id="contact${index}" value="${contact.phone}" data-name="${contact.name}">
+                    <label for="contact${index}">${contact.name} (${contact.phone})</label>
+                `;
+                contactsDiv.appendChild(contactElement);
+            });
+        }
+
+        // Funzione per generare i link
+        function generateLinks() {
+            const messageTemplate = document.getElementById('message').value;
+            const selectedContacts = document.querySelectorAll('#contacts input:checked');
+            const linksDiv = document.getElementById('generatedLinks');
+            linksDiv.innerHTML = '';
+
+            if (selectedContacts.length === 0) {
+                alert('Seleziona almeno un destinatario!');
+                return;
+            }
+
+            selectedContacts.forEach(contact => {
+                const name = contact.getAttribute('data-name');
+                const phone = contact.value;
+                const personalizedMessage = messageTemplate.replace('[NOME]', name);
+                const encodedMessage = encodeURIComponent(personalizedMessage);
+                const link = `https://wa.me/${phone}?text=${encodedMessage}`;
 
                 const linkElement = document.createElement('a');
                 linkElement.href = link;
                 linkElement.target = '_blank';
                 linkElement.textContent = `Invia a ${name}`;
-                linksContainer.appendChild(linkElement);
-                linksContainer.appendChild(document.createElement('br'));
+                linkElement.style.display = 'block';
+                linksDiv.appendChild(linkElement);
             });
+
+            document.getElementById('links').style.display = 'block';
         }
+
+        // Carica i contatti all'avvio
+        window.onload = loadContacts;
     </script>
 </body>
 </html>
