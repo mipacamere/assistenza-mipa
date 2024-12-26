@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invia Auguri Personalizzati</title>
     <style>
+        /* Stile per la pagina */
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -23,12 +24,7 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 10px;
-        }
-        textarea, input[type="text"] {
+        textarea, input[type="file"], button {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
@@ -36,18 +32,15 @@
             border-radius: 4px;
         }
         button {
-            width: 100%;
-            padding: 10px;
             background-color: #4CAF50;
             color: white;
             border: none;
-            border-radius: 4px;
             cursor: pointer;
         }
         button:hover {
             background-color: #45a049;
         }
-        .contacts-list {
+        .contacts-list, .links-list {
             max-width: 600px;
             margin: 20px auto;
             padding: 20px;
@@ -62,79 +55,79 @@
 </head>
 <body>
     <h1>Invia Auguri di Natale</h1>
-    <form id="messageForm">
-        <label for="message">Messaggio:</label>
-        <textarea id="message" placeholder="Scrivi il messaggio con [NOME]" required>Ciao [NOME], Buon Natale!</textarea>
-        <button type="button" onclick="generateLinks()">Genera Link</button>
-    </form>
 
+    <!-- Sezione per caricare i contatti -->
     <div class="contacts-list">
-        <h2>Seleziona Destinatari</h2>
-        <div id="contacts">
-            <!-- La lista dei contatti sarà generata dinamicamente -->
-        </div>
+        <h2>1. Carica i Contatti</h2>
+        <input type="file" id="fileInput" accept=".csv" />
+        <p>Carica un file CSV con colonne "Nome" e "Numero".</p>
     </div>
 
-    <div id="links" class="contacts-list" style="display:none;">
+    <!-- Sezione per il messaggio -->
+    <form id="messageForm">
+        <h2>2. Scrivi il Messaggio</h2>
+        <textarea id="message" placeholder="Scrivi il messaggio con [NOME]" required>Ciao [NOME], Buon Natale!</textarea>
+        <button type="button" onclick="generateLinks()">Genera e Invia Messaggi</button>
+    </form>
+
+    <!-- Sezione per i risultati -->
+    <div id="links" class="links-list" style="display:none;">
         <h2>Link Generati</h2>
         <div id="generatedLinks"></div>
     </div>
 
     <script>
-        // Lista dei contatti precompilata
-        const contacts = [
-            { name: "Mario Rossi", phone: "391234567890" },
-            { name: "Luca Bianchi", phone: "392345678901" },
-            { name: "Anna Verdi", phone: "393456789012" },
-            { name: "Giulia Neri", phone: "394567890123" }
-        ];
+        let contacts = [];
 
-        // Funzione per generare la lista dei contatti
-        function loadContacts() {
-            const contactsDiv = document.getElementById('contacts');
-            contacts.forEach((contact, index) => {
-                const contactElement = document.createElement('div');
-                contactElement.className = 'contact';
-                contactElement.innerHTML = `
-                    <input type="checkbox" id="contact${index}" value="${contact.phone}" data-name="${contact.name}">
-                    <label for="contact${index}">${contact.name} (${contact.phone})</label>
-                `;
-                contactsDiv.appendChild(contactElement);
+        // Funzione per leggere il file CSV
+        document.getElementById('fileInput').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const csv = e.target.result;
+                    parseCSV(csv);
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        // Funzione per parsare il CSV
+        function parseCSV(csv) {
+            const rows = csv.split('\n');
+            contacts = rows.slice(1).map(row => {
+                const [name, phone] = row.split(',');
+                return { name: name.trim(), phone: phone.trim() };
             });
+            alert('Contatti caricati con successo!');
         }
 
         // Funzione per generare i link
         function generateLinks() {
             const messageTemplate = document.getElementById('message').value;
-            const selectedContacts = document.querySelectorAll('#contacts input:checked');
             const linksDiv = document.getElementById('generatedLinks');
             linksDiv.innerHTML = '';
 
-            if (selectedContacts.length === 0) {
-                alert('Seleziona almeno un destinatario!');
+            if (contacts.length === 0) {
+                alert('Carica prima i contatti!');
                 return;
             }
 
-            selectedContacts.forEach(contact => {
-                const name = contact.getAttribute('data-name');
-                const phone = contact.value;
-                const personalizedMessage = messageTemplate.replace('[NOME]', name);
+            contacts.forEach(contact => {
+                const personalizedMessage = messageTemplate.replace('[NOME]', contact.name);
                 const encodedMessage = encodeURIComponent(personalizedMessage);
-                const link = `https://wa.me/${phone}?text=${encodedMessage}`;
+                const link = `https://wa.me/${contact.phone}?text=${encodedMessage}`;
 
                 const linkElement = document.createElement('a');
                 linkElement.href = link;
                 linkElement.target = '_blank';
-                linkElement.textContent = `Invia a ${name}`;
+                linkElement.textContent = `Invia a ${contact.name} (${contact.phone})`;
                 linkElement.style.display = 'block';
                 linksDiv.appendChild(linkElement);
             });
 
             document.getElementById('links').style.display = 'block';
         }
-
-        // Carica i contatti all'avvio
-        window.onload = loadContacts;
     </script>
 </body>
 </html>
