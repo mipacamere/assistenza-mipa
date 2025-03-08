@@ -85,107 +85,129 @@
             </div>
         </div>
         
-        <div id="breakfast" class="section">
-            <h2>Breakfast Order</h2>
+       <div id="breakfast" class="section">
+    <h2>Breakfast Order</h2>
+    
+    <div class="card">
+        <h3>Order Breakfast for Tomorrow</h3>
+        <p>Place your order by 10:00 PM for next morning delivery.</p>
+        
+        <form id="breakfastForm">
+            <div>
+                <label for="deliveryTime">Delivery Time:</label>
+                <select id="deliveryTime" required>
+                    <option value="7:00">7:00 AM</option>
+                    <option value="7:30">7:30 AM</option>
+                    <option value="8:00">8:00 AM</option>
+                    <option value="8:30">8:30 AM</option>
+                    <option value="9:00">9:00 AM</option>
+                    <option value="9:30">9:30 AM</option>
+                </select>
+            </div>
             
-            <div class="card">
-                <h3>Order Breakfast for Tomorrow</h3>
-                <p>Place your order by 10:00 PM for next morning delivery.</p>
-                
-                <form id="breakfastForm">
-                    <div>
-                        <label for="deliveryTime">Delivery Time:</label>
-                        <select id="deliveryTime" required>
-                            <option value="7:00">7:00 AM</option>
-                            <option value="7:30">7:30 AM</option>
-                            <option value="8:00">8:00 AM</option>
-                            <option value="8:30">8:30 AM</option>
-                            <option value="9:00">9:00 AM</option>
-                            <option value="9:30">9:30 AM</option>
-                        </select>
-                    </div>
-                    
-                    <h4>Menu Items:</h4>
-                    
-                    <div class="breakfast-item">
-                        <span>Continental Breakfast</span>
-                        <div class="breakfast-controls">
-                            <button type="button" onclick="adjustQuantity('continental', -1)">-</button>
-                            <span id="continental-qty">0</span>
-                            <button type="button" onclick="adjustQuantity('continental', 1)">+</button>
-                        </div>
-                    </div>
-                    
-                    <div class="breakfast-item">
-                        <span>American Breakfast</span>
-                        <div class="breakfast-controls">
-                            <button type="button" onclick="adjustQuantity('american', -1)">-</button>
-                            <span id="american-qty">0</span>
-                            <button type="button" onclick="adjustQuantity('american', 1)">+</button>
-                        </div>
-                    </div>
-                    
-                    <div class="breakfast-item">
-                        <span>Vegetarian Breakfast</span>
-                        <div class="breakfast-controls">
-                            <button type="button" onclick="adjustQuantity('vegetarian', -1)">-</button>
-                            <span id="vegetarian-qty">0</span>
-                            <button type="button" onclick="adjustQuantity('vegetarian', 1)">+</button>
-                        </div>
-                    </div>
-                    
-                    <div class="breakfast-item">
-                        <span>Fresh Fruit Platter</span>
-                        <div class="breakfast-controls">
-                            <button type="button" onclick="adjustQuantity('fruit', -1)">-</button>
-                            <span id="fruit-qty">0</span>
-                            <button type="button" onclick="adjustQuantity('fruit', 1)">+</button>
-                        </div>
-                    </div>
-                    
-                    <div class="breakfast-item">
-                        <span>Coffee</span>
-                        <div class="breakfast-controls">
-                            <button type="button" onclick="adjustQuantity('coffee', -1)">-</button>
-                            <span id="coffee-qty">0</span>
-                            <button type="button" onclick="adjustQuantity('coffee', 1)">+</button>
-                        </div>
-                    </div>
-                    
-                    <div class="breakfast-item">
-                        <span>Tea</span>
-                        <div class="breakfast-controls">
-                            <button type="button" onclick="adjustQuantity('tea', -1)">-</button>
-                            <span id="tea-qty">0</span>
-                            <button type="button" onclick="adjustQuantity('tea', 1)">+</button>
-                        </div>
-                    </div>
-                    
-                    <div class="breakfast-item">
-                        <span>Fresh Orange Juice</span>
-                        <div class="breakfast-controls">
-                            <button type="button" onclick="adjustQuantity('juice', -1)">-</button>
-                            <span id="juice-qty">0</span>
-                            <button type="button" onclick="adjustQuantity('juice', 1)">+</button>
-                        </div>
-                    </div>
-                    
-                    <textarea id="specialRequests" placeholder="Special requests or dietary requirements..."></textarea>
-                    
-                    <div class="breakfast-summary">
-                        <h4>Order Summary:</h4>
-                        <p id="order-summary">No items selected</p>
-                        <p>Total: <strong id="order-total">$0.00</strong></p>
-                    </div>
-                    
-                    <button class="btn" type="submit">Place Breakfast Order</button>
-                </form>
-                <div id="breakfast-success" class="success-message">
-                    Your breakfast order has been placed successfully!
+            <h4>Menu Items:</h4>
+            
+            <div class="breakfast-item">
+                <span>Continental Breakfast</span>
+                <div class="breakfast-controls">
+                    <button type="button" onclick="adjustQuantity('continental', -1)">-</button>
+                    <span id="continental-qty">0</span>
+                    <button type="button" onclick="adjustQuantity('continental', 1)">+</button>
                 </div>
             </div>
-        </div>
+            
+            <div class="breakfast-item">
+                <span>American Breakfast</span>
+                <div class="breakfast-controls">
+                    <button type="button" onclick="adjustQuantity('american', -1)">-</button>
+                    <span id="american-qty">0</span>
+                    <button type="button" onclick="adjustQuantity('american', 1)">+</button>
+                </div>
+            </div>
+            
+            <div class="breakfast-item">
+                <span>Vegetarian Breakfast</span>
+                <div class="breakfast-controls">
+                    <button type="button" onclick="adjustQuantity('vegetarian', -1)">-</button>
+                    <span id="vegetarian-qty">0</span>
+                    <button type="button" onclick="adjustQuantity('vegetarian', 1)">+</button>
+                </div>
+            </div>
+            
+            <div class="breakfast-item">
+                <span>Fresh Fruit Platter</span>
+                <div class="breakfast-controls">
+                    <button type="button" onclick="adjustQuantity('fruit', -1)">-</button>
+                    <span id="fruit-qty">0</span>
+                    <button type="button" onclick="adjustQuantity('fruit', 1)">+</button>
+                </div>
+            </div>
+            
+            <div class="breakfast-item">
+                <span>Coffee</span>
+                <div class="breakfast-controls">
+                    <button type="button" onclick="adjustQuantity('coffee', -1)">-</button>
+                    <span id="coffee-qty">0</span>
+                    <button type="button" onclick="adjustQuantity('coffee', 1)">+</button>
+                </div>
+            </div>
+            
+            <div class="breakfast-item">
+                <span>Tea</span>
+                <div class="breakfast-controls">
+                    <button type="button" onclick="adjustQuantity('tea', -1)">-</button>
+                    <span id="tea-qty">0</span>
+                    <button type="button" onclick="adjustQuantity('tea', 1)">+</button>
+                </div>
+            </div>
+            
+            <div class="breakfast-item">
+                <span>Fresh Orange Juice</span>
+                <div class="breakfast-controls">
+                    <button type="button" onclick="adjustQuantity('juice', -1)">-</button>
+                    <span id="juice-qty">0</span>
+                    <button type="button" onclick="adjustQuantity('juice', 1)">+</button>
+                </div>
+            </div>
+            
+            <textarea id="specialRequests" placeholder="Special requests or dietary requirements..."></textarea>
+            
+            <div class="breakfast-summary">
+                <h4>Order Summary:</h4>
+                <p id="order-summary">No items selected</p>
+                <p>Total: <strong id="order-total">$0.00</strong></p>
+            </div>
+            
+            <button class="btn" type="submit">Place Breakfast Order</button>
+        </form>
         
+        <div id="order-options" style="display: none; margin-top: 20px;">
+            <h4>Send your order:</h4>
+            <p>Choose how you'd like to send your breakfast order:</p>
+            
+            <div class="order-buttons">
+                <button class="btn" onclick="generateBreakfastPDF()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 8px;">
+                        <path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z"/>
+                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                    </svg>
+                    Download as PDF
+                </button>
+                
+                <button class="btn" style="margin-left: 10px;" onclick="sendBreakfastEmail()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 8px;">
+                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.708 2.825L15 11.105V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.105l4.708-2.897L1 5.383v5.722z"/>
+                    </svg>
+                    Send via Email
+                </button>
+            </div>
+            
+            <div class="success-message" id="breakfast-success" style="margin-top: 15px;">
+                Your breakfast order has been processed successfully!
+            </div>
+        </div>
+    </div>
+       
         <div id="info" class="section">
             <h2>Accommodation Information</h2>
             
