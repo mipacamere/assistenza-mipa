@@ -7,268 +7,7 @@
     <meta name="description" content="Guest services and information for your stay">
     <meta name="theme-color" content="#4a90e2">
     <link rel="manifest" href="manifest.json">
-    <style>
-        :root {
-            --primary-color: #4a90e2;
-            --secondary-color: #f5f5f5;
-            --text-color: #333;
-            --accent-color: #ffd700;
-            --success-color: #4CAF50;
-            --error-color: #f44336;
-        }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: var(--secondary-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-        
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        nav {
-            background-color: white;
-            display: flex;
-            justify-content: space-around;
-            padding: 0.5rem;
-            position: sticky;
-            top: 60px;
-            z-index: 99;
-            border-bottom: 1px solid #eee;
-        }
-        
-        nav button {
-            background: none;
-            border: none;
-            padding: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--text-color);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-        }
-        
-        nav button.active {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--primary-color);
-        }
-        
-        nav button svg {
-            margin-bottom: 0.25rem;
-            height: 24px;
-            width: 24px;
-        }
-        
-        main {
-            padding: 1rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .section {
-            display: none;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .section.active {
-            display: block;
-        }
-        
-        h2 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
-        
-        h3 {
-            margin: 1rem 0 0.5rem;
-        }
-        
-        p {
-            margin-bottom: 1rem;
-        }
-        
-        .card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-        }
-        
-        .btn:hover {
-            background-color: #3a80d2;
-        }
-        
-        .btn-secondary {
-            background-color: var(--secondary-color);
-            color: var(--text-color);
-            border: 1px solid #ddd;
-        }
-        
-        .btn-secondary:hover {
-            background-color: #e5e5e5;
-        }
-        
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        input, select, textarea {
-            padding: 0.5rem;
-            margin-bottom: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-        
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-        
-        .success-message {
-            background-color: var(--success-color);
-            color: white;
-            padding: 0.5rem;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-            display: none;
-        }
-        
-        .error-message {
-            background-color: var(--error-color);
-            color: white;
-            padding: 0.5rem;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-            display: none;
-        }
-        
-        .breakfast-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .breakfast-item:last-child {
-            border-bottom: none;
-        }
-        
-        .breakfast-controls {
-            display: flex;
-            align-items: center;
-        }
-        
-        .breakfast-controls button {
-            background-color: var(--secondary-color);
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .breakfast-controls span {
-            margin: 0 0.5rem;
-            width: 20px;
-            text-align: center;
-        }
-        
-        .breakfast-summary {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #eee;
-        }
-        
-        .accordion {
-            background-color: white;
-            cursor: pointer;
-            padding: 1rem;
-            width: 100%;
-            border: none;
-            text-align: left;
-            outline: none;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .accordion:hover {
-            background-color: #f9f9f9;
-        }
-        
-        .panel {
-            padding: 0 1rem;
-            background-color: white;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-        
-        .panel-content {
-            padding: 1rem 0;
-        }
-        
-        @media (max-width: 600px) {
-            nav {
-                position: fixed;
-                bottom: 0;
-                top: auto;
-                width: 100%;
-                box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-            }
-            
-            main {
-                padding-bottom: 70px;
-            }
-            
-            header {
-                position: sticky;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
@@ -346,107 +85,129 @@
             </div>
         </div>
         
-        <div id="breakfast" class="section">
-            <h2>Breakfast Order</h2>
+       <div id="breakfast" class="section">
+    <h2>Breakfast Order</h2>
+    
+    <div class="card">
+        <h3>Order Breakfast for Tomorrow</h3>
+        <p>Place your order by 10:00 PM for next morning delivery.</p>
+        
+        <form id="breakfastForm">
+            <div>
+                <label for="deliveryTime">Delivery Time:</label>
+                <select id="deliveryTime" required>
+                    <option value="7:00">7:00 AM</option>
+                    <option value="7:30">7:30 AM</option>
+                    <option value="8:00">8:00 AM</option>
+                    <option value="8:30">8:30 AM</option>
+                    <option value="9:00">9:00 AM</option>
+                    <option value="9:30">9:30 AM</option>
+                </select>
+            </div>
             
-            <div class="card">
-                <h3>Order Breakfast for Tomorrow</h3>
-                <p>Place your order by 10:00 PM for next morning delivery.</p>
-                
-                <form id="breakfastForm">
-                    <div>
-                        <label for="deliveryTime">Delivery Time:</label>
-                        <select id="deliveryTime" required>
-                            <option value="7:00">7:00 AM</option>
-                            <option value="7:30">7:30 AM</option>
-                            <option value="8:00">8:00 AM</option>
-                            <option value="8:30">8:30 AM</option>
-                            <option value="9:00">9:00 AM</option>
-                            <option value="9:30">9:30 AM</option>
-                        </select>
-                    </div>
-                    
-                    <h4>Menu Items:</h4>
-                    
-                    <div class="breakfast-item">
-                        <span>Continental Breakfast</span>
-                        <div class="breakfast-controls">
-                            <button type="button" onclick="adjustQuantity('continental', -1)">-</button>
-                            <span id="continental-qty">0</span>
-                            <button type="button" onclick="adjustQuantity('continental', 1)">+</button>
-                        </div>
-                    </div>
-                    
-                    <div class="breakfast-item">
-                        <span>American Breakfast</span>
-                        <div class="breakfast-controls">
-                            <button type="button" onclick="adjustQuantity('american', -1)">-</button>
-                            <span id="american-qty">0</span>
-                            <button type="button" onclick="adjustQuantity('american', 1)">+</button>
-                        </div>
-                    </div>
-                    
-                    <div class="breakfast-item">
-                        <span>Vegetarian Breakfast</span>
-                        <div class="breakfast-controls">
-                            <button type="button" onclick="adjustQuantity('vegetarian', -1)">-</button>
-                            <span id="vegetarian-qty">0</span>
-                            <button type="button" onclick="adjustQuantity('vegetarian', 1)">+</button>
-                        </div>
-                    </div>
-                    
-                    <div class="breakfast-item">
-                        <span>Fresh Fruit Platter</span>
-                        <div class="breakfast-controls">
-                            <button type="button" onclick="adjustQuantity('fruit', -1)">-</button>
-                            <span id="fruit-qty">0</span>
-                            <button type="button" onclick="adjustQuantity('fruit', 1)">+</button>
-                        </div>
-                    </div>
-                    
-                    <div class="breakfast-item">
-                        <span>Coffee</span>
-                        <div class="breakfast-controls">
-                            <button type="button" onclick="adjustQuantity('coffee', -1)">-</button>
-                            <span id="coffee-qty">0</span>
-                            <button type="button" onclick="adjustQuantity('coffee', 1)">+</button>
-                        </div>
-                    </div>
-                    
-                    <div class="breakfast-item">
-                        <span>Tea</span>
-                        <div class="breakfast-controls">
-                            <button type="button" onclick="adjustQuantity('tea', -1)">-</button>
-                            <span id="tea-qty">0</span>
-                            <button type="button" onclick="adjustQuantity('tea', 1)">+</button>
-                        </div>
-                    </div>
-                    
-                    <div class="breakfast-item">
-                        <span>Fresh Orange Juice</span>
-                        <div class="breakfast-controls">
-                            <button type="button" onclick="adjustQuantity('juice', -1)">-</button>
-                            <span id="juice-qty">0</span>
-                            <button type="button" onclick="adjustQuantity('juice', 1)">+</button>
-                        </div>
-                    </div>
-                    
-                    <textarea id="specialRequests" placeholder="Special requests or dietary requirements..."></textarea>
-                    
-                    <div class="breakfast-summary">
-                        <h4>Order Summary:</h4>
-                        <p id="order-summary">No items selected</p>
-                        <p>Total: <strong id="order-total">$0.00</strong></p>
-                    </div>
-                    
-                    <button class="btn" type="submit">Place Breakfast Order</button>
-                </form>
-                <div id="breakfast-success" class="success-message">
-                    Your breakfast order has been placed successfully!
+            <h4>Menu Items:</h4>
+            
+            <div class="breakfast-item">
+                <span>Continental Breakfast</span>
+                <div class="breakfast-controls">
+                    <button type="button" onclick="adjustQuantity('continental', -1)">-</button>
+                    <span id="continental-qty">0</span>
+                    <button type="button" onclick="adjustQuantity('continental', 1)">+</button>
                 </div>
             </div>
-        </div>
+            
+            <div class="breakfast-item">
+                <span>American Breakfast</span>
+                <div class="breakfast-controls">
+                    <button type="button" onclick="adjustQuantity('american', -1)">-</button>
+                    <span id="american-qty">0</span>
+                    <button type="button" onclick="adjustQuantity('american', 1)">+</button>
+                </div>
+            </div>
+            
+            <div class="breakfast-item">
+                <span>Vegetarian Breakfast</span>
+                <div class="breakfast-controls">
+                    <button type="button" onclick="adjustQuantity('vegetarian', -1)">-</button>
+                    <span id="vegetarian-qty">0</span>
+                    <button type="button" onclick="adjustQuantity('vegetarian', 1)">+</button>
+                </div>
+            </div>
+            
+            <div class="breakfast-item">
+                <span>Fresh Fruit Platter</span>
+                <div class="breakfast-controls">
+                    <button type="button" onclick="adjustQuantity('fruit', -1)">-</button>
+                    <span id="fruit-qty">0</span>
+                    <button type="button" onclick="adjustQuantity('fruit', 1)">+</button>
+                </div>
+            </div>
+            
+            <div class="breakfast-item">
+                <span>Coffee</span>
+                <div class="breakfast-controls">
+                    <button type="button" onclick="adjustQuantity('coffee', -1)">-</button>
+                    <span id="coffee-qty">0</span>
+                    <button type="button" onclick="adjustQuantity('coffee', 1)">+</button>
+                </div>
+            </div>
+            
+            <div class="breakfast-item">
+                <span>Tea</span>
+                <div class="breakfast-controls">
+                    <button type="button" onclick="adjustQuantity('tea', -1)">-</button>
+                    <span id="tea-qty">0</span>
+                    <button type="button" onclick="adjustQuantity('tea', 1)">+</button>
+                </div>
+            </div>
+            
+            <div class="breakfast-item">
+                <span>Fresh Orange Juice</span>
+                <div class="breakfast-controls">
+                    <button type="button" onclick="adjustQuantity('juice', -1)">-</button>
+                    <span id="juice-qty">0</span>
+                    <button type="button" onclick="adjustQuantity('juice', 1)">+</button>
+                </div>
+            </div>
+            
+            <textarea id="specialRequests" placeholder="Special requests or dietary requirements..."></textarea>
+            
+            <div class="breakfast-summary">
+                <h4>Order Summary:</h4>
+                <p id="order-summary">No items selected</p>
+                <p>Total: <strong id="order-total">$0.00</strong></p>
+            </div>
+            
+            <button class="btn" type="submit">Place Breakfast Order</button>
+        </form>
         
+        <div id="order-options" style="display: none; margin-top: 20px;">
+            <h4>Send your order:</h4>
+            <p>Choose how you'd like to send your breakfast order:</p>
+            
+            <div class="order-buttons">
+                <button class="btn" onclick="generateBreakfastPDF()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 8px;">
+                        <path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z"/>
+                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                    </svg>
+                    Download as PDF
+                </button>
+                
+                <button class="btn" style="margin-left: 10px;" onclick="sendBreakfastEmail()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 8px;">
+                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.708 2.825L15 11.105V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.105l4.708-2.897L1 5.383v5.722z"/>
+                    </svg>
+                    Send via Email
+                </button>
+            </div>
+            
+            <div class="success-message" id="breakfast-success" style="margin-top: 15px;">
+                Your breakfast order has been processed successfully!
+            </div>
+        </div>
+    </div>
+       
         <div id="info" class="section">
             <h2>Accommodation Information</h2>
             
@@ -542,151 +303,6 @@
         </div>
     </main>
     
-    <script>
-        // Function to show selected section and update nav buttons
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Show selected section
-            document.getElementById(sectionId).classList.add('active');
-            
-            // Update nav buttons
-            document.querySelectorAll('nav button').forEach(button => {
-                button.classList.remove('active');
-            });
-            document.getElementById(sectionId + '-btn').classList.add('active');
-        }
-        
-        // Initialize breakfast order variables
-        const items = {
-            'continental': { price: 12.99, qty: 0 },
-            'american': { price: 14.99, qty: 0 },
-            'vegetarian': { price: 13.99, qty: 0 },
-            'fruit': { price: 8.99, qty: 0 },
-            'coffee': { price: 3.99, qty: 0 },
-            'tea': { price: 3.49, qty: 0 },
-            'juice': { price: 4.99, qty: 0 }
-        };
-        
-        // Adjust quantity of breakfast items
-        function adjustQuantity(item, change) {
-            const newQty = Math.max(0, items[item].qty + change);
-            items[item].qty = newQty;
-            document.getElementById(`${item}-qty`).textContent = newQty;
-            updateOrderSummary();
-        }
-        
-        // Update the order summary
-        function updateOrderSummary() {
-            let summaryText = '';
-            let total = 0;
-            
-            let hasItems = false;
-            
-            for (const [item, data] of Object.entries(items)) {
-                if (data.qty > 0) {
-                    hasItems = true;
-                    const itemTotal = data.qty * data.price;
-                    total += itemTotal;
-                    const itemName = item.charAt(0).toUpperCase() + item.slice(1);
-                    summaryText += `${itemName}: ${data.qty} x $${data.price.toFixed(2)} = $${itemTotal.toFixed(2)}<br>`;
-                }
-            }
-            
-            document.getElementById('order-summary').innerHTML = hasItems ? summaryText : 'No items selected';
-            document.getElementById('order-total').textContent = `$${total.toFixed(2)}`;
-        }
-        
-        // Handle room service form submission
-        document.getElementById('roomServiceForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // In a real app, you would send the form data to a server here
-            // For now, we'll just show a success message
-            document.getElementById('service-success').style.display = 'block';
-            
-            // Reset form
-            this.reset();
-            
-            // Hide success message after 3 seconds
-            setTimeout(() => {
-                document.getElementById('service-success').style.display = 'none';
-            }, 3000);
-        });
-        
-        // Handle breakfast form submission
-        document.getElementById('breakfastForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Check if any items are selected
-            let hasItems = false;
-            for (const data of Object.values(items)) {
-                if (data.qty > 0) {
-                    hasItems = true;
-                    break;
-                }
-            }
-            
-            if (!hasItems) {
-                alert('Please select at least one item for your breakfast order.');
-                return;
-            }
-            
-            // In a real app, you would send the order data to a server here
-            // For now, we'll just show a success message
-            document.getElementById('breakfast-success').style.display = 'block';
-            
-            // Reset form and items
-            this.reset();
-            for (const key in items) {
-                items[key].qty = 0;
-                document.getElementById(`${key}-qty`).textContent = '0';
-            }
-            updateOrderSummary();
-            
-            // Hide success message after 3 seconds
-            setTimeout(() => {
-                document.getElementById('breakfast-success').style.display = 'none';
-            }, 3000);
-        });
-        
-        // Handle accordion for FAQs
-        document.querySelectorAll('.accordion').forEach(accordion => {
-            accordion.addEventListener('click', function() {
-                this.classList.toggle('active');
-                
-                const panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + 'px';
-                }
-                
-                // Toggle plus/minus icon
-                const svg = this.querySelector('svg');
-                if (this.classList.contains('active')) {
-                    svg.innerHTML = '<path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>';
-                } else {
-                    svg.innerHTML = '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>';
-                }
-            });
-        });
-        
-        // Service Worker Registration for PWA functionality
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    })
-                    .catch(error => {
-                        console.log('ServiceWorker registration failed: ', error);
-                    });
-            });
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
