@@ -1,3 +1,82 @@
+const prices = {
+    continental: 5.00,
+    american: 7.00,
+    vegetarian: 6.00,
+    fruit: 4.00,
+    coffee: 2.50,
+    tea: 2.50,
+    juice: 3.00
+};
+
+let order = {
+    continental: 0,
+    american: 0,
+    vegetarian: 0,
+    fruit: 0,
+    coffee: 0,
+    tea: 0,
+    juice: 0
+};
+
+function adjustQuantity(item, change) {
+    if (order[item] + change >= 0) {
+        order[item] += change;
+        document.getElementById(`${item}-qty`).textContent = order[item];
+        updateOrderSummary();
+    }
+}
+
+function updateOrderSummary() {
+    let total = 0;
+    let summary = [];
+    for (const item in order) {
+        if (order[item] > 0) {
+            total += order[item] * prices[item];
+            summary.push(`${order[item]} x ${item.replace(/^./, str => str.toUpperCase())}`);
+        }
+    }
+
+    document.getElementById("order-summary").textContent = summary.length ? summary.join(', ') : 'No items selected';
+    document.getElementById("order-total").textContent = `$${total.toFixed(2)}`;
+}
+
+function placeOrder() {
+    const specialRequests = document.getElementById('specialRequests').value;
+    const orderDetails = {
+        items: order,
+        specialRequests,
+        total: document.getElementById("order-total").textContent
+    };
+
+    // Hide form and show options
+    document.getElementById('order-options').style.display = 'block';
+    document.getElementById('breakfast-success').style.display = 'block';
+}
+
+function generateBreakfastPDF() {
+    // Create PDF from the order details using a library like jsPDF
+    const pdf = new jsPDF();
+    pdf.text("Breakfast Order", 10, 10);
+    pdf.text(`Total: $${document.getElementById("order-total").textContent}`, 10, 20);
+    pdf.text("Items: ", 10, 30);
+    let y = 40;
+    for (const item in order) {
+        if (order[item] > 0) {
+            pdf.text(`${order[item]} x ${item.replace(/^./, str => str.toUpperCase())}`, 10, y);
+            y += 10;
+        }
+    }
+    pdf.text(`Special Requests: ${document.getElementById('specialRequests').value}`, 10, y);
+    pdf.save('breakfast-order.pdf');
+}
+
+function sendBreakfastEmail() {
+    // Use an email API or a server-side service to send the email
+    alert("Your order will be sent via email.");
+    // You can replace this with an actual API call or email-sending service
+}
+
+
 // Function to show selected section and update nav buttons
 function showSection(sectionId) {
     // Hide all sections
