@@ -3,299 +3,665 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Accommodation Assistant</title>
-    <meta name="description" content="Guest services and information for your stay">
-    <meta name="theme-color" content="#4a90e2">
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="styles.css">
+    <title>Guest Support</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/material-components-web/14.0.0/material-components-web.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --mdc-theme-primary: #0A6E6E; /* Petrolio/Teal color */
+            --mdc-theme-secondary: #004D40;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Roboto, sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        .app-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            min-height: 100vh;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background-color: var(--mdc-theme-primary);
+            color: white;
+            padding: 16px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .tabs {
+            background-color: var(--mdc-theme-primary);
+            display: flex;
+            justify-content: space-around;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        
+        .tab-item {
+            flex: 1;
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            padding: 12px 0;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-item.active {
+            color: white;
+            border-bottom: 3px solid white;
+        }
+        
+        .material-icons {
+            display: block;
+            margin: 0 auto 4px;
+            font-size: 24px;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section {
+            margin-bottom: 24px;
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: var(--mdc-theme-primary);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .contact-item i {
+            margin-right: 12px;
+            color: var(--mdc-theme-primary);
+        }
+        
+        .service-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .service-item i {
+            margin-right: 12px;
+            color: var(--mdc-theme-primary);
+        }
+        
+        .mdc-button {
+            margin-top: 16px;
+            margin-bottom: 16px;
+            background-color: var(--mdc-theme-primary);
+            color: white;
+            border-radius: 4px;
+            padding: 8px 16px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mdc-button i {
+            margin-right: 8px;
+        }
+        
+        .mdc-card {
+            padding: 16px;
+            margin-bottom: 16px;
+            border-radius: 4px;
+            border: 1px solid #eee;
+        }
+        
+        /* Breakfast menu */
+        .breakfast-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+        }
+        
+        .breakfast-details {
+            flex-grow: 1;
+        }
+        
+        .breakfast-name {
+            font-weight: 500;
+        }
+        
+        .breakfast-description {
+            font-size: 0.85rem;
+            color: #777;
+            margin-top: 4px;
+        }
+        
+        .breakfast-price {
+            color: var(--mdc-theme-primary);
+            font-weight: 500;
+            margin-right: 12px;
+        }
+        
+        .breakfast-controls {
+            display: flex;
+            align-items: center;
+        }
+        
+        .qty-control {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .breakfast-qty {
+            margin: 0 12px;
+            width: 24px;
+            text-align: center;
+        }
+        
+        .total-section {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 2px solid #eee;
+        }
+        
+        /* Photo upload section */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 16px;
+        }
+        
+        .photo-item {
+            position: relative;
+            padding-bottom: 100%;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        
+        .photo-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .photo-item .remove-photo {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        .upload-btn-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            margin-top: 16px;
+        }
+        
+        .upload-btn-wrapper input[type=file] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        /* Map */
+        .map-container {
+            height: 400px;
+            margin-top: 16px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to Your Stay</h1>
-    </header>
-    
-    <nav id="nav">
-        <button id="home-btn" class="active" onclick="showSection('home')">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-            Home
-        </button>
-        <button id="services-btn" onclick="showSection('services')">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
-            </svg>
-            Services
-        </button>
-        <button id="breakfast-btn" onclick="showSection('breakfast')">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
-            Breakfast
-        </button>
-        <button id="info-btn" onclick="showSection('info')">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Info
-        </button>
-    </nav>
-    
-    <main>
-        <div id="home" class="section active">
-            <div class="card">
-                <h2>Welcome to Our Accommodation</h2>
-                <p>We're delighted to have you stay with us. This app is designed to make your stay as comfortable and convenient as possible.</p>
-                <p>Room Number: <strong>105</strong></p>
-                <p>Check-in: <strong>March 8, 2025</strong></p>
-                <p>Check-out: <strong>March 10, 2025</strong></p>
-                <p>Wi-Fi Network: <strong>Guest_Network</strong></p>
-                <p>Wi-Fi Password: <strong>WelcomeGuest2025</strong></p>
-            </div>
-            
-            <div class="card">
-                <h2>Quick Help</h2>
-                <p>Reception Hours: <strong>7:00 AM - 11:00 PM</strong></p>
-                <p>Reception Phone: <strong>555-123-4567</strong></p>
-                <p>Emergency Contact: <strong>555-911</strong></p>
-                <button class="btn" onclick="showSection('services')">Request Service</button>
-            </div>
+    <div class="app-container">
+        <div class="header">
+            <h1>Guest Support</h1>
         </div>
         
-        <div id="services" class="section">
-            <h2>Guest Services</h2>
-            
-            <div class="card">
-                <h3>Request Room Service</h3>
-                <form id="roomServiceForm">
-                    <select id="serviceType" required>
-                        <option value="">Select Service Type</option>
-                        <option value="cleaning">Room Cleaning</option>
-                        <option value="towels">Fresh Towels</option>
-                        <option value="toiletries">Toiletries</option>
-                        <option value="maintenance">Maintenance</option>
-                    </select>
-                    <textarea id="serviceDetails" placeholder="Additional details..."></textarea>
-                    <input type="datetime-local" id="serviceTime" required>
-                    <button class="btn" type="submit">Submit Request</button>
-                </form>
-                <div id="service-success" class="success-message">
-                    Your service request has been submitted successfully!
-                </div>
-            </div>
-        </div>
-
-<div id="breakfast" class="section">
-    <h2>Breakfast Order</h2>
-    
-    <div class="card">
-        <h3>Order Breakfast for Tomorrow</h3>
-        <p>Place your order by 10:00 PM for next morning delivery.</p>
+        <ul class="tabs">
+            <li class="tab-item active" data-tab="info">
+                <i class="material-icons">info</i>
+                Your Needs
+            </li>
+            <li class="tab-item" data-tab="breakfast">
+                <i class="material-icons">restaurant</i>
+                Breakfast
+            </li>
+            <li class="tab-item" data-tab="photos">
+                <i class="material-icons">photo_camera</i>
+                Photos
+            </li>
+            <li class="tab-item" data-tab="checkout">
+                <i class="material-icons">logout</i>
+                Check Out
+            </li>
+            <li class="tab-item" data-tab="map">
+                <i class="material-icons">map</i>
+                City Map
+            </li>
+        </ul>
         
-        <form id="breakfastForm">
-            <div>
-                <label for="deliveryTime">Delivery Time:</label>
-                <select id="deliveryTime" required>
-                    <option value="7:00">7:00 AM</option>
-                    <option value="7:30">7:30 AM</option>
-                    <option value="8:00">8:00 AM</option>
-                    <option value="8:30">8:30 AM</option>
-                    <option value="9:00">9:00 AM</option>
-                    <option value="9:30">9:30 AM</option>
-                </select>
-            </div>
-            
-            <h4>Menu Items:</h4>
-            
-            <div class="breakfast-item" data-price="5.00">
-                <span>Continental Breakfast ($5.00)</span>
-                <div class="breakfast-controls">
-                    <button type="button" onclick="adjustQuantity('continental', -1)">-</button>
-                    <span id="continental-qty">0</span>
-                    <button type="button" onclick="adjustQuantity('continental', 1)">+</button>
+        <div class="tab-content active" id="info">
+            <div class="section">
+                <h2 class="section-title">General Info</h2>
+                <div class="mdc-card">
+                    <p><strong>Check-in:</strong> 2:00 PM - 8:00 PM</p>
+                    <p><strong>Check-out:</strong> By 11:00 AM</p>
+                    <p><strong>Address:</strong> 123 Ocean Drive, Seaside Town</p>
                 </div>
             </div>
             
-            <div class="breakfast-item" data-price="7.00">
-                <span>American Breakfast ($7.00)</span>
-                <div class="breakfast-controls">
-                    <button type="button" onclick="adjustQuantity('american', -1)">-</button>
-                    <span id="american-qty">0</span>
-                    <button type="button" onclick="adjustQuantity('american', 1)">+</button>
+            <div class="section">
+                <h2 class="section-title">Contact Us</h2>
+                <div class="contact-item">
+                    <i class="material-icons">phone</i>
+                    <a href="tel:+1234567890">+123 456 7890</a>
+                </div>
+                <div class="contact-item">
+                    <i class="material-icons">email</i>
+                    <a href="mailto:info@accommodation.com">info@accommodation.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="material-icons">whatsapp</i>
+                    <a href="https://wa.me/1234567890" target="_blank">Contact via WhatsApp</a>
                 </div>
             </div>
             
-            <div class="breakfast-item" data-price="6.00">
-                <span>Vegetarian Breakfast ($6.00)</span>
-                <div class="breakfast-controls">
-                    <button type="button" onclick="adjustQuantity('vegetarian', -1)">-</button>
-                    <span id="vegetarian-qty">0</span>
-                    <button type="button" onclick="adjustQuantity('vegetarian', 1)">+</button>
+            <div class="section">
+                <h2 class="section-title">Additional Services</h2>
+                <div class="service-item">
+                    <i class="material-icons">directions_bike</i>
+                    <div>
+                        <div><strong>Bike Rental</strong></div>
+                        <div>€10 per day - Ask at reception</div>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <i class="material-icons">scuba_diving</i>
+                    <div>
+                        <div><strong>Scuba Diving</strong></div>
+                        <div>€50 per person - Book 24h in advance</div>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <i class="material-icons">beach_access</i>
+                    <div>
+                        <div><strong>Beach Equipment</strong></div>
+                        <div>Free for guests</div>
+                    </div>
                 </div>
             </div>
             
-            <div class="breakfast-item" data-price="4.00">
-                <span>Fresh Fruit Platter ($4.00)</span>
-                <div class="breakfast-controls">
-                    <button type="button" onclick="adjustQuantity('fruit', -1)">-</button>
-                    <span id="fruit-qty">0</span>
-                    <button type="button" onclick="adjustQuantity('fruit', 1)">+</button>
-                </div>
-            </div>
-            
-            <div class="breakfast-item" data-price="2.50">
-                <span>Coffee ($2.50)</span>
-                <div class="breakfast-controls">
-                    <button type="button" onclick="adjustQuantity('coffee', -1)">-</button>
-                    <span id="coffee-qty">0</span>
-                    <button type="button" onclick="adjustQuantity('coffee', 1)">+</button>
-                </div>
-            </div>
-            
-            <div class="breakfast-item" data-price="2.50">
-                <span>Tea ($2.50)</span>
-                <div class="breakfast-controls">
-                    <button type="button" onclick="adjustQuantity('tea', -1)">-</button>
-                    <span id="tea-qty">0</span>
-                    <button type="button" onclick="adjustQuantity('tea', 1)">+</button>
-                </div>
-            </div>
-            
-            <div class="breakfast-item" data-price="3.00">
-                <span>Fresh Orange Juice ($3.00)</span>
-                <div class="breakfast-controls">
-                    <button type="button" onclick="adjustQuantity('juice', -1)">-</button>
-                    <span id="juice-qty">0</span>
-                    <button type="button" onclick="adjustQuantity('juice', 1)">+</button>
-                </div>
-            </div>
-            
-            <textarea id="specialRequests" placeholder="Special requests or dietary requirements..."></textarea>
-            
-            <div class="breakfast-summary">
-                <h4>Order Summary:</h4>
-                <p id="order-summary">No items selected</p>
-                <p>Total: <strong id="order-total">$0.00</strong></p>
-            </div>
-            
-            <button class="btn" type="button" onclick="placeOrder()">Place Order</button>
-        </form>
-        
-        <div id="order-options" style="display: none; margin-top: 20px;">
-            <h4>Send your order:</h4>
-            <p>Choose how you'd like to send your breakfast order:</p>
-            
-            <div class="order-buttons">
-                <button class="btn" onclick="generateBreakfastPDF()">
-                    Download as PDF
+            <div class="section">
+                <h2 class="section-title">Explore the City</h2>
+                <button class="mdc-button" onclick="window.open('https://goo.gl/maps/example')">
+                    <i class="material-icons">explore</i>
+                    View Itinerary
                 </button>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="breakfast">
+            <div class="section">
+                <h2 class="section-title">Order Your Breakfast</h2>
+                <p>Select items for your breakfast. Orders must be placed by 8:00 PM for next morning delivery.</p>
                 
-                <button class="btn" style="margin-left: 10px;" onclick="sendBreakfastEmail()">
-                    Send via Email
+                <div id="breakfast-items">
+                    <div class="breakfast-item">
+                        <div class="breakfast-details">
+                            <div class="breakfast-name">Continental Breakfast</div>
+                            <div class="breakfast-description">Croissant, jam, butter, coffee or tea</div>
+                        </div>
+                        <div class="breakfast-price">€8.50</div>
+                        <div class="breakfast-controls">
+                            <div class="qty-control minus" onclick="updateQuantity('continental', -1)">-</div>
+                            <div class="breakfast-qty" id="qty-continental">0</div>
+                            <div class="qty-control plus" onclick="updateQuantity('continental', 1)">+</div>
+                        </div>
+                    </div>
+                    
+                    <div class="breakfast-item">
+                        <div class="breakfast-details">
+                            <div class="breakfast-name">Full Breakfast</div>
+                            <div class="breakfast-description">Eggs, bacon, toast, tomato, mushrooms, coffee or tea</div>
+                        </div>
+                        <div class="breakfast-price">€12.00</div>
+                        <div class="breakfast-controls">
+                            <div class="qty-control minus" onclick="updateQuantity('full', -1)">-</div>
+                            <div class="breakfast-qty" id="qty-full">0</div>
+                            <div class="qty-control plus" onclick="updateQuantity('full', 1)">+</div>
+                        </div>
+                    </div>
+                    
+                    <div class="breakfast-item">
+                        <div class="breakfast-details">
+                            <div class="breakfast-name">Vegan Breakfast</div>
+                            <div class="breakfast-description">Avocado toast, fruit salad, plant-based yogurt, coffee or tea</div>
+                        </div>
+                        <div class="breakfast-price">€10.50</div>
+                        <div class="breakfast-controls">
+                            <div class="qty-control minus" onclick="updateQuantity('vegan', -1)">-</div>
+                            <div class="breakfast-qty" id="qty-vegan">0</div>
+                            <div class="qty-control plus" onclick="updateQuantity('vegan', 1)">+</div>
+                        </div>
+                    </div>
+                    
+                    <div class="breakfast-item">
+                        <div class="breakfast-details">
+                            <div class="breakfast-name">Fresh Orange Juice</div>
+                            <div class="breakfast-description">300ml freshly squeezed orange juice</div>
+                        </div>
+                        <div class="breakfast-price">€3.50</div>
+                        <div class="breakfast-controls">
+                            <div class="qty-control minus" onclick="updateQuantity('juice', -1)">-</div>
+                            <div class="breakfast-qty" id="qty-juice">0</div>
+                            <div class="qty-control plus" onclick="updateQuantity('juice', 1)">+</div>
+                        </div>
+                    </div>
+                    
+                    <div class="breakfast-item">
+                        <div class="breakfast-details">
+                            <div class="breakfast-name">Fruit Plate</div>
+                            <div class="breakfast-description">Selection of seasonal fruits</div>
+                        </div>
+                        <div class="breakfast-price">€6.00</div>
+                        <div class="breakfast-controls">
+                            <div class="qty-control minus" onclick="updateQuantity('fruit', -1)">-</div>
+                            <div class="breakfast-qty" id="qty-fruit">0</div>
+                            <div class="qty-control plus" onclick="updateQuantity('fruit', 1)">+</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="total-section">
+                    <div>Total:</div>
+                    <div id="breakfast-total">€0.00</div>
+                </div>
+                
+                <button class="mdc-button" id="order-breakfast">
+                    <i class="material-icons">send</i>
+                    Place Order
                 </button>
             </div>
-            
-            <div class="success-message" id="breakfast-success" style="margin-top: 15px;">
-                Your breakfast order has been processed successfully!
+        </div>
+        
+        <div class="tab-content" id="photos">
+            <div class="section">
+                <h2 class="section-title">Share Your Photos</h2>
+                <p>Upload photos from your stay. We may feature them on our website (with your permission)!</p>
+                
+                <div class="upload-btn-wrapper">
+                    <button class="mdc-button">
+                        <i class="material-icons">add_photo_alternate</i>
+                        Add Photos
+                    </button>
+                    <input type="file" accept="image/*" multiple id="photo-upload" />
+                </div>
+                
+                <div class="photo-gallery" id="photo-gallery">
+                    <!-- Photos will be added here via JavaScript -->
+                </div>
+                
+                <button class="mdc-button" id="share-photos" disabled>
+                    <i class="material-icons">share</i>
+                    Share Photos via WhatsApp
+                </button>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="checkout">
+            <div class="section">
+                <h2 class="section-title">Check Out</h2>
+                <div class="mdc-card">
+                    <p>Ready to check out? Please ensure you have:</p>
+                    <ul>
+                        <li>Returned all keys and access cards</li>
+                        <li>Collected all personal belongings</li>
+                        <li>Settled any outstanding payments</li>
+                    </ul>
+                    <p>Click the button below to notify us that you are checking out.</p>
+                    
+                    <button class="mdc-button" id="checkout-button">
+                        <i class="material-icons">logout</i>
+                        Complete Check Out
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="map">
+            <div class="section">
+                <h2 class="section-title">City Map</h2>
+                <div class="map-container" id="map-canvas">
+                    <!-- Google Map will be loaded here -->
+                </div>
             </div>
         </div>
     </div>
-       
-        <div id="info" class="section">
-            <h2>Accommodation Information</h2>
-            
-            <div class="card">
-                <h3>Amenities</h3>
-                <p>Here's what you can find in our accommodation:</p>
-                <ul>
-                    <li>Free high-speed Wi-Fi</li>
-                    <li>Air conditioning</li>
-                    <li>Daily housekeeping</li>
-                    <li>Flat-screen TV</li>
-                    <li>Complimentary toiletries</li>
-                    <li>Hair dryer</li>
-                    <li>In-room safe</li>
-                    <li>Mini fridge</li>
-                </ul>
-            </div>
-            
-            <div class="card">
-                <h3>Frequently Asked Questions</h3>
-                
-                <button class="accordion">
-                    What are check-in and check-out times?
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </button>
-                <div class="panel">
-                    <div class="panel-content">
-                        <p>Check-in time is from 3:00 PM, and check-out time is by 11:00 AM. Early check-in and late check-out may be available upon request, subject to availability.</p>
-                    </div>
-                </div>
-                
-                <button class="accordion">
-                    Is breakfast included in my stay?
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </button>
-                <div class="panel">
-                    <div class="panel-content">
-                        <p>Breakfast is available for an additional charge. You can order breakfast through the Breakfast tab in this app.</p>
-                    </div>
-                </div>
-                
-                <button class="accordion">
-                    How do I connect to the Wi-Fi?
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </button>
-                <div class="panel">
-                    <div class="panel-content">
-                        <p>Connect to the network "Guest_Network" using the password "WelcomeGuest2025". If you experience any issues, please contact reception.</p>
-                    </div>
-                </div>
-                
-                <button class="accordion">
-                    Is there parking available?
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    </svg>
-                </button>
-                <div class="panel">
-                    <div class="panel-content">
-                        <p>Yes, we offer complimentary parking for our guests. Please inform reception of your vehicle details upon arrival.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h3>Local Attractions</h3>
-                <p>Here are some popular attractions near our accommodation:</p>
-                <ul>
-                    <li>City Museum (0.5 miles)</li>
-                    <li>Central Park (0.8 miles)</li>
-                    <li>Shopping District (1.2 miles)</li>
-                    <li>Beach Front (2.0 miles)</li>
-                    <li>Historic Downtown (1.5 miles)</li>
-                </ul>
-            </div>
-            
-            <div class="card">
-                <h3>Transport Information</h3>
-                <p>Getting around:</p>
-                <ul>
-                    <li>Nearest Bus Stop: 200 meters</li>
-                    <li>Taxi Service: Call reception to arrange</li>
-                    <li>Airport: 15 miles (approximately 25 minutes by car)</li>
-                    <li>Train Station: 2 miles</li>
-                </ul>
-            </div>
-        </div>
-    </main>
     
-    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/material-components-web/14.0.0/material-components-web.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script>
+    <script>
+        // Tab switching
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab-item');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and content
+                    document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to current tab and content
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                    
+                    // Initialize map if map tab is selected
+                    if (tabId === 'map') {
+                        initMap();
+                    }
+                });
+            });
+            
+            // Breakfast ordering system
+            const breakfastItems = {
+                'continental': { price: 8.50, qty: 0 },
+                'full': { price: 12.00, qty: 0 },
+                'vegan': { price: 10.50, qty: 0 },
+                'juice': { price: 3.50, qty: 0 },
+                'fruit': { price: 6.00, qty: 0 }
+            };
+            
+            window.updateQuantity = function(itemId, change) {
+                const currentQty = breakfastItems[itemId].qty;
+                const newQty = Math.max(0, currentQty + change);
+                breakfastItems[itemId].qty = newQty;
+                
+                // Update display
+                document.getElementById(`qty-${itemId}`).textContent = newQty;
+                updateTotal();
+            };
+            
+            function updateTotal() {
+                let total = 0;
+                for (const item in breakfastItems) {
+                    total += breakfastItems[item].price * breakfastItems[item].qty;
+                }
+                document.getElementById('breakfast-total').textContent = `€${total.toFixed(2)}`;
+            }
+            
+            // Place breakfast order
+            document.getElementById('order-breakfast').addEventListener('click', function() {
+                let orderText = "Hello, I would like to order breakfast:%0A%0A";
+                let hasItems = false;
+                let total = 0;
+                
+                for (const item in breakfastItems) {
+                    if (breakfastItems[item].qty > 0) {
+                        const itemName = document.querySelector(`#qty-${item}`).parentNode.parentNode.previousElementSibling.previousElementSibling.querySelector('.breakfast-name').textContent;
+                        const itemPrice = breakfastItems[item].price;
+                        const itemTotal = itemPrice * breakfastItems[item].qty;
+                        
+                        orderText += `${breakfastItems[item].qty}x ${itemName} - €${itemTotal.toFixed(2)}%0A`;
+                        total += itemTotal;
+                        hasItems = true;
+                    }
+                }
+                
+                if (!hasItems) {
+                    alert("Please select at least one item");
+                    return;
+                }
+                
+                orderText += `%0ATotal: €${total.toFixed(2)}`;
+                
+                // Open WhatsApp with the order text
+                window.open(`https://wa.me/1234567890?text=${orderText}`);
+            });
+            
+            // Photo upload
+            const photoUpload = document.getElementById('photo-upload');
+            const photoGallery = document.getElementById('photo-gallery');
+            const shareButton = document.getElementById('share-photos');
+            let uploadedPhotos = [];
+            
+            photoUpload.addEventListener('change', function(e) {
+                const files = e.target.files;
+                
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    
+                    if (!file.type.match('image.*')) {
+                        continue;
+                    }
+                    
+                    const reader = new FileReader();
+                    
+                    reader.onload = (function(theFile) {
+                        return function(e) {
+                            // Add image to gallery
+                            const div = document.createElement('div');
+                            div.className = 'photo-item';
+                            
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+                            div.appendChild(img);
+                            
+                            const removeBtn = document.createElement('div');
+                            removeBtn.className = 'remove-photo';
+                            removeBtn.innerHTML = '×';
+                            removeBtn.addEventListener('click', function() {
+                                div.remove();
+                                uploadedPhotos = uploadedPhotos.filter(p => p !== e.target.result);
+                                if (uploadedPhotos.length === 0) {
+                                    shareButton.disabled = true;
+                                }
+                            });
+                            
+                            div.appendChild(removeBtn);
+                            photoGallery.appendChild(div);
+                            
+                            uploadedPhotos.push(e.target.result);
+                            shareButton.disabled = false;
+                        };
+                    })(file);
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Share photos via WhatsApp
+            shareButton.addEventListener('click', function() {
+                // Note: WhatsApp doesn't allow sending images via URL parameters
+                // Instead, we'll open WhatsApp with a message about the photos
+                const message = "Hello, I would like to share some photos from my stay with you. I'll send them in separate messages.";
+                window.open(`https://wa.me/00393339201524?text=${encodeURIComponent(message)}`);
+            });
+            
+            // Check out button
+            document.getElementById('checkout-button').addEventListener('click', function() {
+                const message = "Hello, I'm checking out now. Thank you for the wonderful stay!";
+                window.open(`https://wa.me/1234567890?text=${encodeURIComponent(message)}`);
+            });
+            
+            // Initialize Google Map
+            window.initMap = function() {
+                // Default coordinates (replace with your accommodation location)
+                const defaultLocation = { lat: 40.7128, lng: -74.0060 };
+                
+                const mapOptions = {
+                    center: defaultLocation,
+                    zoom: 14,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                
+                const map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                
+                // Add marker for accommodation location
+                new google.maps.Marker({
+                    position: defaultLocation,
+                    map: map,
+                    title: 'Your Accommodation'
+                });
+            };
+        });
+    </script>
 </body>
 </html>
