@@ -2,8 +2,8 @@
 
 /* Base variables for themes */
 :root {
-    --mdc-theme-primary: #007BFF; /* New blue theme color */
-    --mdc-theme-secondary: #0056b3; /* Secondary color for contrast */
+    --mdc-theme-primary: #2D8B8B; /* Light petrolio/teal theme color instead of blue */
+    --mdc-theme-secondary: #1A6363; /* Darker petrolio for contrast */
     --mdc-theme-background: #f5f5f5; /* Background color */
     --mdc-theme-light: #ffffff; /* Light background */
     --mdc-text-color: #333; /* Default text color */
