@@ -104,7 +104,7 @@ function sendWhatsAppOrder() {
     
     // Open WhatsApp with the message
     // Replace with your actual phone number
-    window.open(`https://wa.me/YOUR_PHONE_NUMBER_HERE?text=${encodedMessage}`, '_blank');
+    window.open(`https://wa.me/393339201524?text=${encodedMessage}`, '_blank');
 }
 
     // Photo upload
