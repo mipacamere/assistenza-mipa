@@ -158,8 +158,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!mapCanvas) return;
         
         // Default coordinates (replace with your accommodation location)
-        const defaultLocation = { lat: 40.7128, lng: -74.0060 };
-
+      const defaultLocation = { lat: 38.2234, lng: 15.2423 }; // Milazzo coordinates  
+      
         const mapOptions = {
             center: defaultLocation,
             zoom: 14,
