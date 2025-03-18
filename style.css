@@ -1,59 +1,83 @@
 /* style.css */
+
+/* Base variables for themes */
 :root {
-    --mdc-theme-primary: #0A6E6E; /* Petrolio/Teal color */
-    --mdc-theme-secondary: #004D40;
+    --mdc-theme-primary: #007BFF; /* New blue theme color */
+    --mdc-theme-secondary: #0056b3; /* Secondary color for contrast */
+    --mdc-theme-background: #f5f5f5; /* Background color */
+    --mdc-theme-light: #ffffff; /* Light background */
+    --mdc-text-color: #333; /* Default text color */
+    --mdc-border-radius: 8px; /* Standard border radius */
+    --mdc-shadow: rgba(0, 0, 0, 0.1);
+    --mdc-shadow-light: rgba(0, 0, 0, 0.07);
 }
 
+/* Global styles */
 body {
     margin: 0;
     padding: 0;
-    font-family: Roboto, sans-serif;
-    background-color: #f5f5f5;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--mdc-theme-background);
+    color: var(--mdc-text-color);
+    line-height: 1.6;
 }
 
 .app-container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
-    background-color: white;
+    background-color: var(--mdc-theme-light);
     min-height: 100vh;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 16px var(--mdc-shadow-light);
+    border-radius: var(--mdc-border-radius);
 }
 
 .header {
     background-color: var(--mdc-theme-primary);
-    color: white;
-    padding: 16px;
+    color: var(--mdc-theme-light);
+    padding: 20px;
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-top-left-radius: var(--mdc-border-radius);
+    border-top-right-radius: var(--mdc-border-radius);
+    box-shadow: 0 4px 8px var(--mdc-shadow);
+}
+
+.header h1 {
+    font-size: 1.8rem;
+    margin: 0;
 }
 
 .tabs {
-    background-color: var(--mdc-theme-primary);
     display: flex;
     justify-content: space-around;
-    padding: 0;
+    background-color: var(--mdc-theme-primary);
+    padding: 10px 0;
     margin: 0;
     list-style: none;
+    border-bottom: 2px solid var(--mdc-theme-light);
 }
 
 .tab-item {
     flex: 1;
     text-align: center;
-    color: rgba(255,255,255,0.7);
-    padding: 12px 0;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    font-size: 1rem;
     cursor: pointer;
-    font-size: 0.8rem;
     transition: all 0.3s ease;
 }
 
+.tab-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
 .tab-item.active {
-    color: white;
-    border-bottom: 3px solid white;
+    color: var(--mdc-theme-light);
+    border-bottom: 3px solid var(--mdc-theme-light);
 }
 
 .material-icons {
     display: block;
-    margin: 0 auto 4px;
+    margin: 0 auto 5px;
     font-size: 24px;
 }
 
@@ -66,68 +90,58 @@ body {
     display: block;
 }
 
+/* Section styling */
 .section {
-    margin-bottom: 24px;
+    margin-bottom: 30px;
 }
 
 .section-title {
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin-bottom: 12px;
+    font-size: 1.3rem;
+    font-weight: 600;
     color: var(--mdc-theme-primary);
-    border-bottom: 1px solid #eee;
-    padding-bottom: 8px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 16px;
 }
 
-.contact-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 12px;
-}
-
-.contact-item i {
-    margin-right: 12px;
-    color: var(--mdc-theme-primary);
-}
-
+/* Contact & Service items */
+.contact-item,
 .service-item {
     display: flex;
     align-items: center;
-    margin-bottom: 12px;
-}
-
-.service-item i {
-    margin-right: 12px;
-    color: var(--mdc-theme-primary);
-}
-
-.mdc-button {
-    margin-top: 16px;
     margin-bottom: 16px;
+}
+
+.contact-item i,
+.service-item i {
+    margin-right: 15px;
+    color: var(--mdc-theme-primary);
+    font-size: 1.2rem;
+}
+
+/* Button styling */
+.mdc-button {
     background-color: var(--mdc-theme-primary);
-    color: white;
-    border-radius: 4px;
-    padding: 8px 16px;
+    color: var(--mdc-theme-light);
+    padding: 12px 24px;
+    border-radius: var(--mdc-border-radius);
+    font-size: 1rem;
+    font-weight: 600;
     text-transform: uppercase;
     border: none;
     cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.3s ease;
 }
 
 .mdc-button i {
-    margin-right: 8px;
+    margin-right: 10px;
 }
 
-.mdc-card {
-    padding: 16px;
-    margin-bottom: 16px;
-    border-radius: 4px;
-    border: 1px solid #eee;
+.mdc-button:hover {
+    background-color: var(--mdc-theme-secondary);
 }
 
 /* Breakfast menu */
@@ -135,28 +149,18 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #eee;
-    padding: 12px 0;
-}
-
-.breakfast-details {
-    flex-grow: 1;
+    border-bottom: 1px solid #ddd;
+    padding: 16px 0;
 }
 
 .breakfast-name {
-    font-weight: 500;
-}
-
-.breakfast-description {
-    font-size: 0.85rem;
-    color: #777;
-    margin-top: 4px;
+    font-weight: 600;
 }
 
 .breakfast-price {
     color: var(--mdc-theme-primary);
-    font-weight: 500;
-    margin-right: 12px;
+    font-weight: 600;
+    margin-right: 15px;
 }
 
 .breakfast-controls {
@@ -165,47 +169,51 @@ body {
 }
 
 .qty-control {
-    width: 32px;
-    height: 32px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
+    background: var(--mdc-theme-light);
     border: 1px solid #ddd;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: white;
     cursor: pointer;
+    margin: 0 8px;
     user-select: none;
 }
 
 .breakfast-qty {
     margin: 0 12px;
-    width: 24px;
+    width: 30px;
     text-align: center;
+    font-weight: 600;
 }
 
+/* Total section */
 .total-section {
     display: flex;
     justify-content: space-between;
-    font-weight: bold;
-    font-size: 1.1rem;
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 2px solid #eee;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid #ddd;
 }
 
 /* Photo upload section */
 .photo-gallery {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin-top: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
 }
 
 .photo-item {
     position: relative;
     padding-bottom: 100%;
     overflow: hidden;
-    border-radius: 4px;
+    border-radius: var(--mdc-border-radius);
+    box-shadow: 0 4px 10px var(--mdc-shadow-light);
 }
 
 .photo-item img {
@@ -219,13 +227,13 @@ body {
 
 .photo-item .remove-photo {
     position: absolute;
-    top: 4px;
-    right: 4px;
-    background: rgba(0,0,0,0.5);
-    color: white;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    color: var(--mdc-theme-light);
     border-radius: 50%;
-    width: 24px;
-    height: 24px;
+    width: 25px;
+    height: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -233,50 +241,39 @@ body {
     font-size: 18px;
 }
 
-.upload-btn-wrapper {
-    position: relative;
-    overflow: hidden;
-    display: inline-block;
-    margin-top: 16px;
-}
-
-.upload-btn-wrapper input[type=file] {
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-}
-
 /* Map */
 .map-container {
     height: 400px;
-    margin-top: 16px;
-    border-radius: 4px;
+    margin-top: 20px;
+    border-radius: var(--mdc-border-radius);
     overflow: hidden;
 }
 
 .language-switcher {
     display: flex;
     justify-content: center;
-    padding: 8px;
+    padding: 12px;
     background-color: var(--mdc-theme-primary);
 }
 
 .lang-btn {
     background: none;
-    border: 1px solid rgba(255,255,255,0.5);
-    color: white;
-    margin: 0 4px;
-    padding: 4px 8px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: var(--mdc-theme-light);
+    margin: 0 8px;
+    padding: 6px 12px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.lang-btn:hover {
+    background-color: var(--mdc-theme-light);
+    color: var(--mdc-theme-primary);
 }
 
 .lang-btn.active {
-    background-color: white;
+    background-color: var(--mdc-theme-light);
     color: var(--mdc-theme-primary);
 }
