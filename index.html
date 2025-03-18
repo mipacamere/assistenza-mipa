@@ -1,11 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<div class="language-switcher">
-    <button class="lang-btn" data-lang="en">EN</button>
-    <button class="lang-btn" data-lang="it">IT</button>
-    <button class="lang-btn" data-lang="es">ES</button>
-    <button class="lang-btn" data-lang="fr">FR</button>
-</div>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +8,12 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
+    <div class="language-switcher">
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="it">IT</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+    </div>
     <div class="app-container">
         <div class="header">
             <h1>Guest Support</h1>
@@ -83,7 +83,7 @@
                         <div><strong>Scuba Diving</strong></div>
                         <div>From €60 per person, book 24h in advance - Ask us for more information</div>
                     </div>
-                    </div>
+                </div>
             </div>
 
             <div class="section">
@@ -203,6 +203,15 @@
             </div>
         </div>
 
+        <div class="tab-content" id="map">
+            <div class="section">
+                <h2 class="section-title">City Map</h2>
+                <div class="map-container" id="map-canvas">
+                    <!-- Google Map will be loaded here -->
+                </div>
+            </div>
+        </div>
+
         <div class="tab-content" id="checkout">
             <div class="section">
                 <h2 class="section-title">Check Out</h2>
@@ -219,15 +228,6 @@
                         <i class="material-icons">logout</i>
                         Complete Check Out
                     </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="tab-content" id="map">
-            <div class="section">
-                <h2 class="section-title">City Map</h2>
-                <div class="map-container" id="map-canvas">
-                    <!-- Google Map will be loaded here -->
                 </div>
             </div>
         </div>
