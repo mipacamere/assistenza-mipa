@@ -122,7 +122,7 @@ body {
 /* Button styling */
 .mdc-button {
     background-color: var(--mdc-theme-primary);
-    color: var(--mdc-theme-light);
+    color: #ffffff; /* Changed to white instead of var(--mdc-theme-light) for emphasis */
     padding: 12px 24px;
     border-radius: var(--mdc-border-radius);
     font-size: 1rem;
@@ -138,10 +138,17 @@ body {
 
 .mdc-button i {
     margin-right: 10px;
+    color: #ffffff; /* Ensuring icons in buttons are also white */
 }
 
 .mdc-button:hover {
     background-color: var(--mdc-theme-secondary);
+}
+
+/* Buttons at the bottom of the page specifically */
+.mdc-button.footer-button {
+    color: #ffffff;
+    font-weight: 700;
 }
 
 /* Breakfast menu */
@@ -259,7 +266,7 @@ body {
 .lang-btn {
     background: none;
     border: 1px solid rgba(255, 255, 255, 0.5);
-    color: var(--mdc-theme-light);
+    color: #ffffff; /* Changed to white */
     margin: 0 8px;
     padding: 6px 12px;
     border-radius: 4px;
