@@ -97,89 +97,165 @@
         </div>
 
         <div class="tab-content" id="breakfast">
-            <div class="section">
-                <h2 class="section-title">Order Your Breakfast</h2>
-                <p>Select items for your breakfast. Orders must be placed by 8:00 PM for next morning delivery.</p>
+    <div class="section">
+        <h2 class="section-title">Order Your Breakfast</h2>
+        <p>Select items for your breakfast. Orders must be placed by 8:00 PM for next morning delivery.</p>
+        
+        <!-- Room Selection Box -->
+        <div class="room-selection">
+            <label for="room-select">Select your room:</label>
+            <select id="room-select" class="room-dropdown">
+                <option value="MiPA1">MiPA1</option>
+                <option value="MiPA2">MiPA2</option>
+                <option value="MiPA3">MiPA3</option>
+                <option value="MiPA4">MiPA4</option>
+            </select>
+        </div>
 
-                <div id="breakfast-items">
-                    <div class="breakfast-item">
-                        <div class="breakfast-details">
-                            <div class="breakfast-name">Continental Breakfast</div>
-                            <div class="breakfast-description">Croissant, jam, butter, coffee or tea</div>
-                        </div>
-                        <div class="breakfast-price">€8.50</div>
-                        <div class="breakfast-controls">
-                            <div class="qty-control minus" onclick="updateQuantity('continental', -1)">-</div>
-                            <div class="breakfast-qty" id="qty-continental">0</div>
-                            <div class="qty-control plus" onclick="updateQuantity('continental', 1)">+</div>
-                        </div>
-                    </div>
-
-                    <div class="breakfast-item">
-                        <div class="breakfast-details">
-                            <div class="breakfast-name">Full Breakfast</div>
-                            <div class="breakfast-description">Eggs, bacon, toast, tomato, mushrooms, coffee or tea</div>
-                        </div>
-                        <div class="breakfast-price">€12.00</div>
-                        <div class="breakfast-controls">
-                            <div class="qty-control minus" onclick="updateQuantity('full', -1)">-</div>
-                            <div class="breakfast-qty" id="qty-full">0</div>
-                            <div class="qty-control plus" onclick="updateQuantity('full', 1)">+</div>
-                        </div>
-                    </div>
-
-                    <div class="breakfast-item">
-                        <div class="breakfast-details">
-                            <div class="breakfast-name">Vegan Breakfast</div>
-                            <div class="breakfast-description">Avocado toast, fruit salad, plant-based yogurt, coffee or tea</div>
-                        </div>
-                        <div class="breakfast-price">€10.50</div>
-                        <div class="breakfast-controls">
-                            <div class="qty-control minus" onclick="updateQuantity('vegan', -1)">-</div>
-                            <div class="breakfast-qty" id="qty-vegan">0</div>
-                            <div class="qty-control plus" onclick="updateQuantity('vegan', 1)">+</div>
-                        </div>
-                    </div>
-
-                    <div class="breakfast-item">
-                        <div class="breakfast-details">
-                            <div class="breakfast-name">Fresh Orange Juice</div>
-                            <div class="breakfast-description">300ml freshly squeezed orange juice</div>
-                        </div>
-                        <div class="breakfast-price">€3.50</div>
-                        <div class="breakfast-controls">
-                            <div class="qty-control minus" onclick="updateQuantity('juice', -1)">-</div>
-                            <div class="breakfast-qty" id="qty-juice">0</div>
-                            <div class="qty-control plus" onclick="updateQuantity('juice', 1)">+</div>
-                        </div>
-                    </div>
-
-                    <div class="breakfast-item">
-                        <div class="breakfast-details">
-                            <div class="breakfast-name">Fruit Plate</div>
-                            <div class="breakfast-description">Selection of seasonal fruits</div>
-                        </div>
-                        <div class="breakfast-price">€6.00</div>
-                        <div class="breakfast-controls">
-                            <div class="qty-control minus" onclick="updateQuantity('fruit', -1)">-</div>
-                            <div class="breakfast-qty" id="qty-fruit">0</div>
-                            <div class="qty-control plus" onclick="updateQuantity('fruit', 1)">+</div>
-                        </div>
-                    </div>
+        <div id="breakfast-items">
+            <div class="breakfast-item">
+                <div class="breakfast-details">
+                    <div class="breakfast-name">Croissant (empty)</div>
+                    <div class="breakfast-description">Plain croissant</div>
                 </div>
-
-                <div class="total-section">
-                    <div>Total:</div>
-                    <div id="breakfast-total">€0.00</div>
+                <div class="breakfast-price">€1.50</div>
+                <div class="breakfast-controls">
+                    <div class="qty-control minus" onclick="updateQuantity('plain-croissant', -1)">-</div>
+                    <div class="breakfast-qty" id="qty-plain-croissant">0</div>
+                    <div class="qty-control plus" onclick="updateQuantity('plain-croissant', 1)">+</div>
                 </div>
+            </div>
 
-                <button class="mdc-button" id="order-breakfast">
-                    <i class="material-icons">send</i>
-                    Place Order
-                </button>
+            <div class="breakfast-item">
+                <div class="breakfast-details">
+                    <div class="breakfast-name">Croissant with Chocolate</div>
+                    <div class="breakfast-description">Croissant filled with chocolate</div>
+                </div>
+                <div class="breakfast-price">€1.50</div>
+                <div class="breakfast-controls">
+                    <div class="qty-control minus" onclick="updateQuantity('chocolate-croissant', -1)">-</div>
+                    <div class="breakfast-qty" id="qty-chocolate-croissant">0</div>
+                    <div class="qty-control plus" onclick="updateQuantity('chocolate-croissant', 1)">+</div>
+                </div>
+            </div>
+
+            <div class="breakfast-item">
+                <div class="breakfast-details">
+                    <div class="breakfast-name">Croissant with Jam</div>
+                    <div class="breakfast-description">Croissant served with jam</div>
+                </div>
+                <div class="breakfast-price">€1.50</div>
+                <div class="breakfast-controls">
+                    <div class="qty-control minus" onclick="updateQuantity('jam-croissant', -1)">-</div>
+                    <div class="breakfast-qty" id="qty-jam-croissant">0</div>
+                    <div class="qty-control plus" onclick="updateQuantity('jam-croissant', 1)">+</div>
+                </div>
+            </div>
+
+            <div class="breakfast-item">
+                <div class="breakfast-details">
+                    <div class="breakfast-name">Croissant with Cream</div>
+                    <div class="breakfast-description">Croissant filled with cream</div>
+                </div>
+                <div class="breakfast-price">€1.50</div>
+                <div class="breakfast-controls">
+                    <div class="qty-control minus" onclick="updateQuantity('cream-croissant', -1)">-</div>
+                    <div class="breakfast-qty" id="qty-cream-croissant">0</div>
+                    <div class="qty-control plus" onclick="updateQuantity('cream-croissant', 1)">+</div>
+                </div>
+            </div>
+
+            <div class="breakfast-item">
+                <div class="breakfast-details">
+                    <div class="breakfast-name">Cappuccino</div>
+                    <div class="breakfast-description">Espresso with steamed milk and foam</div>
+                </div>
+                <div class="breakfast-price">€2.50</div>
+                <div class="breakfast-controls">
+                    <div class="qty-control minus" onclick="updateQuantity('cappuccino', -1)">-</div>
+                    <div class="breakfast-qty" id="qty-cappuccino">0</div>
+                    <div class="qty-control plus" onclick="updateQuantity('cappuccino', 1)">+</div>
+                </div>
+            </div>
+
+            <div class="breakfast-item">
+                <div class="breakfast-details">
+                    <div class="breakfast-name">Espresso</div>
+                    <div class="breakfast-description">Strong black coffee</div>
+                </div>
+                <div class="breakfast-price">€1.00</div>
+                <div class="breakfast-controls">
+                    <div class="qty-control minus" onclick="updateQuantity('espresso', -1)">-</div>
+                    <div class="breakfast-qty" id="qty-espresso">0</div>
+                    <div class="qty-control plus" onclick="updateQuantity('espresso', 1)">+</div>
+                </div>
+            </div>
+
+            <div class="breakfast-item">
+                <div class="breakfast-details">
+                    <div class="breakfast-name">Tea</div>
+                    <div class="breakfast-description">Selection of teas</div>
+                </div>
+                <div class="breakfast-price">€2.00</div>
+                <div class="breakfast-controls">
+                    <div class="qty-control minus" onclick="updateQuantity('tea', -1)">-</div>
+                    <div class="breakfast-qty" id="qty-tea">0</div>
+                    <div class="qty-control plus" onclick="updateQuantity('tea', 1)">+</div>
+                </div>
+            </div>
+
+            <div class="breakfast-item">
+                <div class="breakfast-details">
+                    <div class="breakfast-name">Latte Macchiato</div>
+                    <div class="breakfast-description">Espresso with steamed milk</div>
+                </div>
+                <div class="breakfast-price">€2.50</div>
+                <div class="breakfast-controls">
+                    <div class="qty-control minus" onclick="updateQuantity('latte', -1)">-</div>
+                    <div class="breakfast-qty" id="qty-latte">0</div>
+                    <div class="qty-control plus" onclick="updateQuantity('latte', 1)">+</div>
+                </div>
+            </div>
+
+            <div class="breakfast-item">
+                <div class="breakfast-details">
+                    <div class="breakfast-name">Coffee Macchiato</div>
+                    <div class="breakfast-description">Espresso with a dash of milk</div>
+                </div>
+                <div class="breakfast-price">€1.50</div>
+                <div class="breakfast-controls">
+                    <div class="qty-control minus" onclick="updateQuantity('coffee-macchiato', -1)">-</div>
+                    <div class="breakfast-qty" id="qty-coffee-macchiato">0</div>
+                    <div class="qty-control plus" onclick="updateQuantity('coffee-macchiato', 1)">+</div>
+                </div>
+            </div>
+
+            <div class="breakfast-item">
+                <div class="breakfast-details">
+                    <div class="breakfast-name">Coffee Americano</div>
+                    <div class="breakfast-description">Espresso with added hot water</div>
+                </div>
+                <div class="breakfast-price">€2.00</div>
+                <div class="breakfast-controls">
+                    <div class="qty-control minus" onclick="updateQuantity('americano', -1)">-</div>
+                    <div class="breakfast-qty" id="qty-americano">0</div>
+                    <div class="qty-control plus" onclick="updateQuantity('americano', 1)">+</div>
+                </div>
             </div>
         </div>
 
+        <div class="total-section">
+            <div>Total:</div>
+            <div id="breakfast-total">€0.00</div>
+        </div>
+
+        <button class="mdc-button" id="order-breakfast" onclick="sendWhatsAppOrder()">
+            <i class="material-icons">send</i>
+            Place Order via WhatsApp
+        </button>
+    </div>
+</div>
+        
         <div class="tab-content" id="photos">
             <div class="section">
                 <h2 class="section-title">Share Your Photos</h2>
