@@ -1,1 +1,281 @@
+    :root {
+            --mdc-theme-primary: #0A6E6E; /* Petrolio/Teal color */
+            --mdc-theme-secondary: #004D40;
+        }
 
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Roboto, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .app-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            min-height: 100vh;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background-color: var(--mdc-theme-primary);
+            color: white;
+            padding: 16px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .tabs {
+            background-color: var(--mdc-theme-primary);
+            display: flex;
+            justify-content: space-around;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .tab-item {
+            flex: 1;
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            padding: 12px 0;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .tab-item.active {
+            color: white;
+            border-bottom: 3px solid white;
+        }
+
+        .material-icons {
+            display: block;
+            margin: 0 auto 4px;
+            font-size: 24px;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .section {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: var(--mdc-theme-primary);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .contact-item i {
+            margin-right: 12px;
+            color: var(--mdc-theme-primary);
+        }
+
+        .service-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .service-item i {
+            margin-right: 12px;
+            color: var(--mdc-theme-primary);
+        }
+
+        .mdc-button {
+            margin-top: 16px;
+            margin-bottom: 16px;
+            background-color: var(--mdc-theme-primary);
+            color: white;
+            border-radius: 4px;
+            padding: 8px 16px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mdc-button i {
+            margin-right: 8px;
+        }
+
+        .mdc-card {
+            padding: 16px;
+            margin-bottom: 16px;
+            border-radius: 4px;
+            border: 1px solid #eee;
+        }
+
+        /* Breakfast menu */
+        .breakfast-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+        }
+
+        .breakfast-details {
+            flex-grow: 1;
+        }
+
+        .breakfast-name {
+            font-weight: 500;
+        }
+
+        .breakfast-description {
+            font-size: 0.85rem;
+            color: #777;
+            margin-top: 4px;
+        }
+
+        .breakfast-price {
+            color: var(--mdc-theme-primary);
+            font-weight: 500;
+            margin-right: 12px;
+        }
+
+        .breakfast-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .qty-control {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .breakfast-qty {
+            margin: 0 12px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .total-section {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Photo upload section */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .photo-item {
+            position: relative;
+            padding-bottom: 100%;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .photo-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-item .remove-photo {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .upload-btn-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            margin-top: 16px;
+        }
+
+        .upload-btn-wrapper input[type=file] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        /* Map */
+        .map-container {
+            height: 400px;
+            margin-top: 16px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+    .language-switcher {
+        display: flex;
+        justify-content: center;
+        padding: 8px;
+        background-color: var(--mdc-theme-primary);
+    }
+
+    .lang-btn {
+        background: none;
+        border: 1px solid rgba(255,255,255,0.5);
+        color: white;
+        margin: 0 4px;
+        padding: 4px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.8rem;
+    }
+
+    .lang-btn.active {
+        background-color: white;
+        color: var(--mdc-theme-primary);
+         }
