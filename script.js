@@ -21,61 +21,91 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Breakfast ordering system
-    const breakfastItems = {
-        'continental': { price: 8.50, qty: 0 },
-        'full': { price: 12.00, qty: 0 },
-        'vegan': { price: 10.50, qty: 0 },
-        'juice': { price: 3.50, qty: 0 },
-        'fruit': { price: 6.00, qty: 0 }
-    };
-
-    window.updateQuantity = function(itemId, change) {
-        const currentQty = breakfastItems[itemId].qty;
-        const newQty = Math.max(0, currentQty + change);
-        breakfastItems[itemId].qty = newQty;
-
-        // Update display
-        document.getElementById(`qty-${itemId}`).textContent = newQty;
-        updateTotal();
-    };
-
-    function updateTotal() {
-        let total = 0;
-        for (const item in breakfastItems) {
-            total += breakfastItems[item].price * breakfastItems[item].qty;
-        }
-        document.getElementById('breakfast-total').textContent = `€${total.toFixed(2)}`;
+    // Function to update quantity for an item
+function updateQuantity(itemId, change) {
+    const qtyElement = document.getElementById('qty-' + itemId);
+    let currentQty = parseInt(qtyElement.textContent);
+    
+    // Ensure quantity doesn't go below zero
+    if (currentQty + change >= 0) {
+        currentQty += change;
+        qtyElement.textContent = currentQty;
     }
+    
+    updateTotal();
+}
 
-    // Place breakfast order - With the correct WhatsApp number
-    document.getElementById('order-breakfast').addEventListener('click', function() {
-        let orderText = "Hello, I would like to order breakfast:";
-        let hasItems = false;
-        let total = 0;
+// Function to update the total price
+function updateTotal() {
+    const prices = {
+        'plain-croissant': 1.50,
+        'chocolate-croissant': 1.50,
+        'jam-croissant': 1.50,
+        'cream-croissant': 1.50,
+        'cappuccino': 2.50,
+        'espresso': 1.00,
+        'tea': 2.00,
+        'latte': 2.50,
+        'coffee-macchiato': 1.50,
+        'americano': 2.00
+    };
+    
+    let total = 0;
+    
+    for (const item in prices) {
+        const qty = parseInt(document.getElementById('qty-' + item).textContent);
+        total += qty * prices[item];
+    }
+    
+    document.getElementById('breakfast-total').textContent = '€' + total.toFixed(2);
+}
 
-        for (const item in breakfastItems) {
-            if (breakfastItems[item].qty > 0) {
-                const itemName = document.querySelector(`#qty-${item}`).parentNode.parentNode.previousElementSibling.previousElementSibling.querySelector('.breakfast-name').textContent;
-                const itemPrice = breakfastItems[item].price;
-                const itemTotal = itemPrice * breakfastItems[item].qty;
-
-                orderText += `\n${breakfastItems[item].qty}x ${itemName} - €${itemTotal.toFixed(2)}`;
-                total += itemTotal;
-                hasItems = true;
-            }
+// Function to send order via WhatsApp
+function sendWhatsAppOrder() {
+    // Get selected room
+    const room = document.getElementById('room-select').value;
+    
+    // Get all items with quantity > 0
+    const items = [];
+    const itemIds = [
+        'plain-croissant', 'chocolate-croissant', 'jam-croissant', 'cream-croissant',
+        'cappuccino', 'espresso', 'tea', 'latte', 'coffee-macchiato', 'americano'
+    ];
+    
+    const itemNames = {
+        'plain-croissant': 'Croissant (empty)',
+        'chocolate-croissant': 'Croissant with Chocolate',
+        'jam-croissant': 'Croissant with Jam',
+        'cream-croissant': 'Croissant with Cream',
+        'cappuccino': 'Cappuccino',
+        'espresso': 'Espresso',
+        'tea': 'Tea',
+        'latte': 'Latte Macchiato',
+        'coffee-macchiato': 'Coffee Macchiato',
+        'americano': 'Coffee Americano'
+    };
+    
+    for (const id of itemIds) {
+        const qty = parseInt(document.getElementById('qty-' + id).textContent);
+        if (qty > 0) {
+            items.push(`${qty}x ${itemNames[id]}`);
         }
-
-        if (!hasItems) {
-            alert("Please select at least one item");
-            return;
-        }
-
-        orderText += `\n\nTotal: €${total.toFixed(2)}`;
-
-        // Open WhatsApp with the order text and the breakfast-specific phone number
-        window.open(`https://wa.me/393245242451?text=${encodeURIComponent(orderText)}`);
-    });
+    }
+    
+    const total = document.getElementById('breakfast-total').textContent;
+    
+    // Create message for WhatsApp
+    let message = `Breakfast Order for Room ${room}:\n`;
+    message += items.join('\n');
+    message += `\n\nTotal: ${total}`;
+    
+    // Encode message for URL
+    const encodedMessage = encodeURIComponent(message);
+    
+    // Open WhatsApp with the message
+    // Replace with your actual phone number
+    window.open(`https://wa.me/YOUR_PHONE_NUMBER_HERE?text=${encodedMessage}`, '_blank');
+}
 
     // Photo upload
     const photoUpload = document.getElementById('photo-upload');
