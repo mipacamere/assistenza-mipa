@@ -235,31 +235,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Initialize Google Map
-    window.initMap = function() {
-        // Only proceed if the map canvas exists
-        const mapCanvas = document.getElementById('map-canvas');
-        if (!mapCanvas) return;
-        
-        // Default coordinates (replace with your accommodation location)
-        const defaultLocation = { lat: 38.2234, lng: 15.2423 }; // Milazzo coordinates  
-      
-        const mapOptions = {
-            center: defaultLocation,
-            zoom: 14,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        const map = new google.maps.Map(mapCanvas, mapOptions);
-
-        // Add marker for accommodation location
-        new google.maps.Marker({
-            position: defaultLocation,
-            map: map,
-            title: 'Your Accommodation'
-        });
+ // Initialize Google Map
+window.initMap = function() {
+    // Only proceed if the map canvas exists
+    const mapCanvas = document.getElementById('map-canvas');
+    if (!mapCanvas) return;
+    
+    // Default coordinates (replace with your accommodation location)
+    const defaultLocation = { lat: 38.2234, lng: 15.2423 }; // Milazzo coordinates  
+    
+    const mapOptions = {
+        center: defaultLocation,
+        zoom: 14,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
+    // Create map object
+    const map = new google.maps.Map(mapCanvas, mapOptions);
+
+    // Add marker for accommodation location
+    new google.maps.Marker({
+        position: defaultLocation,
+        map: map,
+        title: 'Your Accommodation'
+    });
+};
     // Language translations
     const translations = {
         "en": {
