@@ -253,11 +253,11 @@ window.initMap = function() {
     // Create map object
     const map = new google.maps.Map(mapCanvas, mapOptions);
 
-    // Add marker for accommodation location
-    new google.maps.Marker({
-        position: defaultLocation,
-        map: map,
-        title: 'Your Accommodation'
+   // Add marker for accommodation location
+new google.maps.Marker({
+    position: { lat: 38.21801725212087, lng: 15.238366739153767 },
+    map: map,
+    title: 'MiPA Milazzo Port Accommodation'
     });
 };
     // Language translations
