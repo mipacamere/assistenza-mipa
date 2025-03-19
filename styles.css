@@ -147,7 +147,7 @@ body {
 
 /* Buttons at the bottom of the page specifically */
 .mdc-button.footer-button {
-    color: #ffffff;
+    color: #ffffff; /* Changed to white for better readability */
     font-weight: 700;
 }
 
@@ -179,6 +179,23 @@ body {
 
 label {
     font-weight: bold;
+}
+
+.guest-info {
+    margin-bottom: 15px;
+}
+
+.guest-name-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.guest-name-input::placeholder {
+    color: #999;
 }
 
 .breakfast-name {
