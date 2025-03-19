@@ -96,10 +96,17 @@
             </div>
         </div>
 
-        <div class="tab-content" id="breakfast">
+<!-- HTML changes for the breakfast tab -->
+<div class="tab-content" id="breakfast">
     <div class="section">
         <h2 class="section-title">Order Your Breakfast</h2>
         <p>Select items for your breakfast. Orders must be placed by 8:00 PM for next morning delivery.</p>
+        
+        <!-- Guest Name Field -->
+        <div class="guest-info">
+            <label for="guest-name">Your Name:</label>
+            <input type="text" id="guest-name" class="guest-name-input" placeholder="Enter your name">
+        </div>
         
         <!-- Room Selection Box -->
         <div class="room-selection">
@@ -120,9 +127,9 @@
                 </div>
                 <div class="breakfast-price">€1.50</div>
                 <div class="breakfast-controls">
-                    <div class="qty-control minus" onclick="updateQuantity('plain-croissant', -1)">-</div>
+                    <div class="qty-control minus" data-item="plain-croissant" data-change="-1">-</div>
                     <div class="breakfast-qty" id="qty-plain-croissant">0</div>
-                    <div class="qty-control plus" onclick="updateQuantity('plain-croissant', 1)">+</div>
+                    <div class="qty-control plus" data-item="plain-croissant" data-change="1">+</div>
                 </div>
             </div>
 
@@ -133,9 +140,9 @@
                 </div>
                 <div class="breakfast-price">€1.50</div>
                 <div class="breakfast-controls">
-                    <div class="qty-control minus" onclick="updateQuantity('chocolate-croissant', -1)">-</div>
+                    <div class="qty-control minus" data-item="chocolate-croissant" data-change="-1">-</div>
                     <div class="breakfast-qty" id="qty-chocolate-croissant">0</div>
-                    <div class="qty-control plus" onclick="updateQuantity('chocolate-croissant', 1)">+</div>
+                    <div class="qty-control plus" data-item="chocolate-croissant" data-change="1">+</div>
                 </div>
             </div>
 
@@ -146,9 +153,9 @@
                 </div>
                 <div class="breakfast-price">€1.50</div>
                 <div class="breakfast-controls">
-                    <div class="qty-control minus" onclick="updateQuantity('jam-croissant', -1)">-</div>
+                    <div class="qty-control minus" data-item="jam-croissant" data-change="-1">-</div>
                     <div class="breakfast-qty" id="qty-jam-croissant">0</div>
-                    <div class="qty-control plus" onclick="updateQuantity('jam-croissant', 1)">+</div>
+                    <div class="qty-control plus" data-item="jam-croissant" data-change="1">+</div>
                 </div>
             </div>
 
@@ -159,9 +166,9 @@
                 </div>
                 <div class="breakfast-price">€1.50</div>
                 <div class="breakfast-controls">
-                    <div class="qty-control minus" onclick="updateQuantity('cream-croissant', -1)">-</div>
+                    <div class="qty-control minus" data-item="cream-croissant" data-change="-1">-</div>
                     <div class="breakfast-qty" id="qty-cream-croissant">0</div>
-                    <div class="qty-control plus" onclick="updateQuantity('cream-croissant', 1)">+</div>
+                    <div class="qty-control plus" data-item="cream-croissant" data-change="1">+</div>
                 </div>
             </div>
 
@@ -172,9 +179,9 @@
                 </div>
                 <div class="breakfast-price">€2.50</div>
                 <div class="breakfast-controls">
-                    <div class="qty-control minus" onclick="updateQuantity('cappuccino', -1)">-</div>
+                    <div class="qty-control minus" data-item="cappuccino" data-change="-1">-</div>
                     <div class="breakfast-qty" id="qty-cappuccino">0</div>
-                    <div class="qty-control plus" onclick="updateQuantity('cappuccino', 1)">+</div>
+                    <div class="qty-control plus" data-item="cappuccino" data-change="1">+</div>
                 </div>
             </div>
 
@@ -185,9 +192,9 @@
                 </div>
                 <div class="breakfast-price">€1.00</div>
                 <div class="breakfast-controls">
-                    <div class="qty-control minus" onclick="updateQuantity('espresso', -1)">-</div>
+                    <div class="qty-control minus" data-item="espresso" data-change="-1">-</div>
                     <div class="breakfast-qty" id="qty-espresso">0</div>
-                    <div class="qty-control plus" onclick="updateQuantity('espresso', 1)">+</div>
+                    <div class="qty-control plus" data-item="espresso" data-change="1">+</div>
                 </div>
             </div>
 
@@ -198,9 +205,9 @@
                 </div>
                 <div class="breakfast-price">€2.00</div>
                 <div class="breakfast-controls">
-                    <div class="qty-control minus" onclick="updateQuantity('tea', -1)">-</div>
+                    <div class="qty-control minus" data-item="tea" data-change="-1">-</div>
                     <div class="breakfast-qty" id="qty-tea">0</div>
-                    <div class="qty-control plus" onclick="updateQuantity('tea', 1)">+</div>
+                    <div class="qty-control plus" data-item="tea" data-change="1">+</div>
                 </div>
             </div>
 
@@ -211,9 +218,9 @@
                 </div>
                 <div class="breakfast-price">€2.50</div>
                 <div class="breakfast-controls">
-                    <div class="qty-control minus" onclick="updateQuantity('latte', -1)">-</div>
+                    <div class="qty-control minus" data-item="latte" data-change="-1">-</div>
                     <div class="breakfast-qty" id="qty-latte">0</div>
-                    <div class="qty-control plus" onclick="updateQuantity('latte', 1)">+</div>
+                    <div class="qty-control plus" data-item="latte" data-change="1">+</div>
                 </div>
             </div>
 
@@ -224,9 +231,9 @@
                 </div>
                 <div class="breakfast-price">€1.50</div>
                 <div class="breakfast-controls">
-                    <div class="qty-control minus" onclick="updateQuantity('coffee-macchiato', -1)">-</div>
+                    <div class="qty-control minus" data-item="coffee-macchiato" data-change="-1">-</div>
                     <div class="breakfast-qty" id="qty-coffee-macchiato">0</div>
-                    <div class="qty-control plus" onclick="updateQuantity('coffee-macchiato', 1)">+</div>
+                    <div class="qty-control plus" data-item="coffee-macchiato" data-change="1">+</div>
                 </div>
             </div>
 
@@ -237,9 +244,9 @@
                 </div>
                 <div class="breakfast-price">€2.00</div>
                 <div class="breakfast-controls">
-                    <div class="qty-control minus" onclick="updateQuantity('americano', -1)">-</div>
+                    <div class="qty-control minus" data-item="americano" data-change="-1">-</div>
                     <div class="breakfast-qty" id="qty-americano">0</div>
-                    <div class="qty-control plus" onclick="updateQuantity('americano', 1)">+</div>
+                    <div class="qty-control plus" data-item="americano" data-change="1">+</div>
                 </div>
             </div>
         </div>
@@ -249,13 +256,12 @@
             <div id="breakfast-total">€0.00</div>
         </div>
 
-        <button class="mdc-button" id="order-breakfast" onclick="sendWhatsAppOrder()">
+        <button class="mdc-button" id="order-breakfast">
             <i class="material-icons">send</i>
             Place Order via WhatsApp
         </button>
     </div>
-</div>
-        
+</div>        
         <div class="tab-content" id="photos">
             <div class="section">
                 <h2 class="section-title">Share Your Photos</h2>
