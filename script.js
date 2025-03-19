@@ -21,91 +21,137 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Add event listeners for quantity controls
+    document.querySelectorAll('.qty-control').forEach(control => {
+        control.addEventListener('click', function() {
+            const itemId = this.getAttribute('data-item');
+            const change = parseInt(this.getAttribute('data-change'));
+            updateQuantity(itemId, change);
+        });
+    });
+
     // Function to update quantity for an item
-function updateQuantity(itemId, change) {
-    const qtyElement = document.getElementById('qty-' + itemId);
-    let currentQty = parseInt(qtyElement.textContent);
-    
-    // Ensure quantity doesn't go below zero
-    if (currentQty + change >= 0) {
-        currentQty += change;
-        qtyElement.textContent = currentQty;
+    function updateQuantity(itemId, change) {
+        const qtyElement = document.getElementById('qty-' + itemId);
+        let currentQty = parseInt(qtyElement.textContent);
+        
+        // Ensure quantity doesn't go below zero
+        if (currentQty + change >= 0) {
+            currentQty += change;
+            qtyElement.textContent = currentQty;
+        }
+        
+        updateTotal();
     }
-    
-    updateTotal();
-}
 
-// Function to update the total price
-function updateTotal() {
-    const prices = {
-        'plain-croissant': 1.50,
-        'chocolate-croissant': 1.50,
-        'jam-croissant': 1.50,
-        'cream-croissant': 1.50,
-        'cappuccino': 2.50,
-        'espresso': 1.00,
-        'tea': 2.00,
-        'latte': 2.50,
-        'coffee-macchiato': 1.50,
-        'americano': 2.00
-    };
-    
-    let total = 0;
-    
-    for (const item in prices) {
-        const qty = parseInt(document.getElementById('qty-' + item).textContent);
-        total += qty * prices[item];
-    }
-    
-    document.getElementById('breakfast-total').textContent = '€' + total.toFixed(2);
-}
-
-// Function to send order via WhatsApp
-function sendWhatsAppOrder() {
-    // Get selected room
-    const room = document.getElementById('room-select').value;
-    
-    // Get all items with quantity > 0
-    const items = [];
-    const itemIds = [
-        'plain-croissant', 'chocolate-croissant', 'jam-croissant', 'cream-croissant',
-        'cappuccino', 'espresso', 'tea', 'latte', 'coffee-macchiato', 'americano'
-    ];
-    
-    const itemNames = {
-        'plain-croissant': 'Croissant (empty)',
-        'chocolate-croissant': 'Croissant with Chocolate',
-        'jam-croissant': 'Croissant with Jam',
-        'cream-croissant': 'Croissant with Cream',
-        'cappuccino': 'Cappuccino',
-        'espresso': 'Espresso',
-        'tea': 'Tea',
-        'latte': 'Latte Macchiato',
-        'coffee-macchiato': 'Coffee Macchiato',
-        'americano': 'Coffee Americano'
-    };
-    
-    for (const id of itemIds) {
-        const qty = parseInt(document.getElementById('qty-' + id).textContent);
-        if (qty > 0) {
-            items.push(`${qty}x ${itemNames[id]}`);
+    // Function to update the total price
+    function updateTotal() {
+        const prices = {
+            'plain-croissant': 1.50,
+            'chocolate-croissant': 1.50,
+            'jam-croissant': 1.50,
+            'cream-croissant': 1.50,
+            'cappuccino': 2.50,
+            'espresso': 1.00,
+            'tea': 2.00,
+            'latte': 2.50,
+            'coffee-macchiato': 1.50,
+            'americano': 2.00
+        };
+        
+        let total = 0;
+        
+        for (const item in prices) {
+            const qtyElement = document.getElementById('qty-' + item);
+            if (qtyElement) {
+                const qty = parseInt(qtyElement.textContent);
+                total += qty * prices[item];
+            }
+        }
+        
+        const totalElement = document.getElementById('breakfast-total');
+        if (totalElement) {
+            totalElement.textContent = '€' + total.toFixed(2);
         }
     }
-    
-    const total = document.getElementById('breakfast-total').textContent;
-    
-    // Create message for WhatsApp
-    let message = `Breakfast Order for Room ${room}:\n`;
-    message += items.join('\n');
-    message += `\n\nTotal: ${total}`;
-    
-    // Encode message for URL
-    const encodedMessage = encodeURIComponent(message);
-    
-    // Open WhatsApp with the message
-    // Replace with your actual phone number
-    window.open(`https://wa.me/393339201524?text=${encodedMessage}`, '_blank');
-}
+
+    // Add event listener for the order button
+    const orderButton = document.getElementById('order-breakfast');
+    if (orderButton) {
+        orderButton.addEventListener('click', sendWhatsAppOrder);
+    }
+
+    // Function to send order via WhatsApp
+    function sendWhatsAppOrder() {
+        // Get guest name
+        const guestNameElement = document.getElementById('guest-name');
+        if (!guestNameElement) return;
+        
+        const guestName = guestNameElement.value.trim();
+        if (!guestName) {
+            alert('Please enter your name before placing the order.');
+            return;
+        }
+        
+        // Get selected room
+        const roomElement = document.getElementById('room-select');
+        if (!roomElement) return;
+        
+        const room = roomElement.value;
+        
+        // Get all items with quantity > 0
+        const items = [];
+        const itemIds = [
+            'plain-croissant', 'chocolate-croissant', 'jam-croissant', 'cream-croissant',
+            'cappuccino', 'espresso', 'tea', 'latte', 'coffee-macchiato', 'americano'
+        ];
+        
+        const itemNames = {
+            'plain-croissant': 'Croissant (empty)',
+            'chocolate-croissant': 'Croissant with Chocolate',
+            'jam-croissant': 'Croissant with Jam',
+            'cream-croissant': 'Croissant with Cream',
+            'cappuccino': 'Cappuccino',
+            'espresso': 'Espresso',
+            'tea': 'Tea',
+            'latte': 'Latte Macchiato',
+            'coffee-macchiato': 'Coffee Macchiato',
+            'americano': 'Coffee Americano'
+        };
+        
+        let hasItems = false;
+        for (const id of itemIds) {
+            const qtyElement = document.getElementById('qty-' + id);
+            if (qtyElement) {
+                const qty = parseInt(qtyElement.textContent);
+                if (qty > 0) {
+                    items.push(`${qty}x ${itemNames[id]}`);
+                    hasItems = true;
+                }
+            }
+        }
+        
+        if (!hasItems) {
+            alert('Please select at least one item to order.');
+            return;
+        }
+        
+        const totalElement = document.getElementById('breakfast-total');
+        if (!totalElement) return;
+        
+        const total = totalElement.textContent;
+        
+        // Create message for WhatsApp
+        let message = `Breakfast Order for ${guestName}, Room ${room}:\n`;
+        message += items.join('\n');
+        message += `\n\nTotal: ${total}`;
+        
+        // Encode message for URL
+        const encodedMessage = encodeURIComponent(message);
+        
+        // Open WhatsApp with the message
+        window.open(`https://wa.me/393339201524?text=${encodedMessage}`, '_blank');
+    }
 
     // Photo upload
     const photoUpload = document.getElementById('photo-upload');
@@ -188,7 +234,7 @@ function sendWhatsAppOrder() {
         if (!mapCanvas) return;
         
         // Default coordinates (replace with your accommodation location)
-      const defaultLocation = { lat: 38.2234, lng: 15.2423 }; // Milazzo coordinates  
+        const defaultLocation = { lat: 38.2234, lng: 15.2423 }; // Milazzo coordinates  
       
         const mapOptions = {
             center: defaultLocation,
@@ -357,4 +403,7 @@ function sendWhatsAppOrder() {
     setTimeout(() => {
         updateLanguage(savedLang);
     }, 100);
+    
+    // Initialize total on page load
+    updateTotal();
 });
