@@ -319,149 +319,209 @@ new google.maps.Marker({
             "city_map": "City Map"
         },
         "it": {
-            // Tabs
-            "tab_info": "Per Te",
-            "tab_breakfast": "Colazione",
-            "tab_photos": "Invia Documenti",
-            "tab_map": "Mappa della Città",
-            "tab_checkout": "Check Out",
-            
-            // Info tab
-            "general_info": "Informazioni Generali",
-            "checkin": "Check-in:",
-            "checkout": "Check-out:",
-            "address": "Indirizzo:",
-            "contact_us": "Contattaci",
-            "additional_services": "Servizi Aggiuntivi",
-            "bike_rental": "Noleggio Biciclette",
-            "bike_rental_details": "€10 al giorno - Chiedi alla reception",
-            "scuba_diving": "Immersioni Subacquee",
-            "scuba_diving_details": "€50 a persona - Prenota con 24 ore di anticipo",
-            "explore_city": "Esplora la Città",
-            "view_itinerary": "Visualizza Itinerario",
-            
-            // Breakfast tab
-            "order_breakfast": "Ordina la Colazione",
-            "breakfast_instructions": "Seleziona i prodotti per la tua colazione. Gli ordini devono essere effettuati entro le 20:00 per la consegna il mattino successivo.",
-            "your_name": "Il tuo nome:",
-            "select_room": "Seleziona la tua camera:",
-            "total": "Totale:",
-            "place_order": "Effettua l'Ordine",
-            
-            // Photos tab
-            "share_photos": "Condividi le Tue Foto",
-            "photos_instructions": "Carica le foto del tuo soggiorno. Potremmo pubblicarle sul nostro sito web (con il tuo permesso)!",
-            "add_photos": "Aggiungi Foto",
-            "share_photos_btn": "Condividi Foto via WhatsApp",
-            
-            // Checkout tab
-            "checkout_title": "Check Out",
-            "checkout_instructions": "Pronto per il check-out? Assicurati di aver:",
-            "checkout_item1": "Restituito tutte le chiavi e le carte di accesso",
-            "checkout_item2": "Raccolto tutti gli effetti personali",
-            "checkout_item3": "Regolato eventuali pagamenti in sospeso",
-            "checkout_note": "Clicca il pulsante qui sotto per avvisarci che stai effettuando il check-out.",
-            "complete_checkout": "Completa il Check Out",
-            
-            // Map tab
-            "city_map": "Mappa della Città"
-        },
+    // Tabs
+    "tab_info": "Per Te",
+    "tab_breakfast": "Colazione",
+    "tab_photos": "Invia Documenti",
+    "tab_map": "Mappa della Città",
+    "tab_checkout": "Check Out",
+    // Info tab
+    "general_info": "Informazioni Generali",
+    "checkin": "Check-in:",
+    "checkout": "Check-out:",
+    "address": "Indirizzo:",
+    "contact_us": "Contattaci",
+    "additional_services": "Servizi Aggiuntivi",
+    "bike_rental": "Noleggio Biciclette",
+    "bike_rental_details": "€10 al giorno - Chiedi alla reception",
+    "scuba_diving": "Immersioni Subacquee",
+    "scuba_diving_details": "€50 a persona - Prenota con 24 ore di anticipo",
+    "explore_city": "Esplora la Città",
+    "view_itinerary": "Visualizza Itinerario",
+    // Breakfast tab
+    "order_breakfast": "Ordina la Tua Colazione",
+    "breakfast_instructions": "Seleziona gli articoli per la tua colazione. Gli ordini devono essere effettuati entro le 20:00 per la consegna la mattina successiva.",
+    "continental_breakfast": "Colazione Continentale",
+    "continental_desc": "Croissant, marmellata, burro, caffè o tè",
+    "full_breakfast": "Colazione Completa",
+    "full_desc": "Uova, bacon, toast, pomodoro, funghi, caffè o tè",
+    "vegan_breakfast": "Colazione Vegana",
+    "vegan_desc": "Toast con avocado, insalata di frutta, yogurt vegetale, caffè o tè",
+    "orange_juice": "Succo d'Arancia Fresco",
+    "juice_desc": "300ml di succo d'arancia appena spremuto",
+    "fruit_plate": "Piatto di Frutta",
+    "fruit_desc": "Selezione di frutta di stagione",
+    "total": "Totale:",
+    "place_order": "Effettua Ordine",
+    // Photos tab
+    "share_photos": "Condividi le Tue Foto",
+    "photos_instructions": "Carica foto del tuo soggiorno. Potremmo pubblicarle sul nostro sito web (con il tuo permesso)!",
+    "add_photos": "Aggiungi Foto",
+    "share_photos_btn": "Condividi Foto tramite WhatsApp",
+    // Checkout tab
+    "checkout_title": "Check Out",
+    "checkout_instructions": "Pronto per il check-out? Assicurati di aver:",
+    "checkout_item1": "Restituito tutte le chiavi e le carte di accesso",
+    "checkout_item2": "Raccolto tutti gli effetti personali",
+    "checkout_item3": "Saldato tutti i pagamenti in sospeso",
+    "checkout_note": "Clicca il pulsante qui sotto per notificarci che stai effettuando il check-out.",
+    "complete_checkout": "Completa il Check Out",
+    // Map tab
+    "city_map": "Mappa della Città"
+},
         "es": {
-            // Tabs
-            "tab_info": "Para Ti",
-            "tab_breakfast": "Desayuno",
-            "tab_photos": "Enviar Documentos",
-            "tab_map": "Mapa de la Ciudad",
-            "tab_checkout": "Check Out",
-            
-            // Info tab
-            "general_info": "Información General",
-            "checkin": "Check-in:",
-            "checkout": "Check-out:",
-            "address": "Dirección:",
-            "contact_us": "Contáctanos",
-            "additional_services": "Servicios Adicionales",
-            "bike_rental": "Alquiler de Bicicletas",
-            "bike_rental_details": "€10 por día - Pregunta en recepción",
-            "scuba_diving": "Buceo",
-            "scuba_diving_details": "€50 por persona - Reserva con 24 horas de antelación",
-            "explore_city": "Explora la Ciudad",
-            "view_itinerary": "Ver Itinerario",
-            
-            // Breakfast tab
-            "order_breakfast": "Pedir Desayuno",
-            "breakfast_instructions": "Selecciona elementos para tu desayuno. Los pedidos deben realizarse antes de las 8:00 PM para entrega a la mañana siguiente.",
-            "your_name": "Tu nombre:",
-            "select_room": "Selecciona tu habitación:",
-            "total": "Total:",
-            "place_order": "Realizar Pedido",
-            
-            // Photos tab
-            "share_photos": "Comparte Tus Fotos",
-            "photos_instructions": "Sube fotos de tu estancia. ¡Podríamos mostrarlas en nuestra web (con tu permiso)!",
-            "add_photos": "Añadir Fotos",
-            "share_photos_btn": "Compartir Fotos por WhatsApp",
-            
-            // Checkout tab
-            "checkout_title": "Check Out",
-            "checkout_instructions": "¿Listo para el check-out? Por favor, asegúrate de haber:",
-            "checkout_item1": "Devuelto todas las llaves y tarjetas de acceso",
-            "checkout_item2": "Recogido todas tus pertenencias",
-            "checkout_item3": "Liquidado cualquier pago pendiente",
-            "checkout_note": "Haz clic en el botón de abajo para notificarnos que estás realizando el check-out.",
-            "complete_checkout": "Completar Check Out",
-            
-            // Map tab
-            "city_map": "Mapa de la Ciudad"
-        },
+    // Tabs
+    "tab_info": "Para Ti",
+    "tab_breakfast": "Desayuno",
+    "tab_photos": "Enviar Documentos",
+    "tab_map": "Mapa de la Ciudad",
+    "tab_checkout": "Check Out",
+    // Info tab
+    "general_info": "Información General",
+    "checkin": "Check-in:",
+    "checkout": "Check-out:",
+    "address": "Dirección:",
+    "contact_us": "Contáctenos",
+    "additional_services": "Servicios Adicionales",
+    "bike_rental": "Alquiler de Bicicletas",
+    "bike_rental_details": "10€ por día - Pregunte en recepción",
+    "scuba_diving": "Buceo",
+    "scuba_diving_details": "50€ por persona - Reserve con 24h de antelación",
+    "explore_city": "Explorar la Ciudad",
+    "view_itinerary": "Ver Itinerario",
+    // Breakfast tab
+    "order_breakfast": "Pida Su Desayuno",
+    "breakfast_instructions": "Seleccione elementos para su desayuno. Los pedidos deben realizarse antes de las 20:00 para entrega a la mañana siguiente.",
+    "continental_breakfast": "Desayuno Continental",
+    "continental_desc": "Croissant, mermelada, mantequilla, café o té",
+    "full_breakfast": "Desayuno Completo",
+    "full_desc": "Huevos, bacon, tostada, tomate, champiñones, café o té",
+    "vegan_breakfast": "Desayuno Vegano",
+    "vegan_desc": "Tostada con aguacate, ensalada de frutas, yogur vegetal, café o té",
+    "orange_juice": "Zumo de Naranja Natural",
+    "juice_desc": "300ml de zumo de naranja recién exprimido",
+    "fruit_plate": "Plato de Frutas",
+    "fruit_desc": "Selección de frutas de temporada",
+    "total": "Total:",
+    "place_order": "Realizar Pedido",
+    // Photos tab
+    "share_photos": "Comparta Sus Fotos",
+    "photos_instructions": "Suba fotos de su estancia. ¡Podríamos incluirlas en nuestro sitio web (con su permiso)!",
+    "add_photos": "Añadir Fotos",
+    "share_photos_btn": "Compartir Fotos por WhatsApp",
+    // Checkout tab
+    "checkout_title": "Check Out",
+    "checkout_instructions": "¿Listo para hacer el check out? Por favor, asegúrese de haber:",
+    "checkout_item1": "Devuelto todas las llaves y tarjetas de acceso",
+    "checkout_item2": "Recogido todas sus pertenencias personales",
+    "checkout_item3": "Liquidado todos los pagos pendientes",
+    "checkout_note": "Haga clic en el botón de abajo para notificarnos que está haciendo el check out.",
+    "complete_checkout": "Completar Check Out",
+    // Map tab
+    "city_map": "Mapa de la Ciudad"
+},
         "fr": {
-            // Tabs
-            "tab_info": "Pour Vous",
-            "tab_breakfast": "Petit-déjeuner",
-            "tab_photos": "Envoyer Documents",
-            "tab_map": "Plan de la Ville",
-            "tab_checkout": "Check Out",
-            
-            // Info tab
-            "general_info": "Informations Générales",
-            "checkin": "Arrivée:",
-            "checkout": "Départ:",
-            "address": "Adresse:",
-            "contact_us": "Contactez-nous",
-            "additional_services": "Services Supplémentaires",
-            "bike_rental": "Location de Vélos",
-            "bike_rental_details": "€10 par jour - Demandez à la réception",
-            "scuba_diving": "Plongée Sous-marine",
-            "scuba_diving_details": "€50 par personne - Réservez 24h à l'avance",
-            "explore_city": "Explorez la Ville",
-            "view_itinerary": "Voir l'Itinéraire",
-            
-            // Breakfast tab
-            "order_breakfast": "Commander Votre Petit-déjeuner",
-            "breakfast_instructions": "Sélectionnez les articles pour votre petit-déjeuner. Les commandes doivent être passées avant 20h00 pour une livraison le lendemain matin.",
-            "your_name": "Votre nom:",
-            "select_room": "Sélectionnez votre chambre:",
-            "total": "Total:",
-            "place_order": "Passer la Commande",
-            
-            // Photos tab
-            "share_photos": "Partagez Vos Photos",
-            "photos_instructions": "Téléchargez des photos de votre séjour. Nous pourrions les présenter sur notre site web (avec votre permission) !",
-            "add_photos": "Ajouter des Photos",
-            "share_photos_btn": "Partager les Photos via WhatsApp",
-            
-            // Checkout tab
-            "checkout_title": "Check Out",
-            "checkout_instructions": "Prêt pour le départ ? Veuillez vous assurer d'avoir :",
-            "checkout_item1": "Rendu toutes les clés et cartes d'accès",
-            "checkout_item2": "Récupéré tous vos effets personnels",
-            "checkout_item3": "Réglé tous les paiements en suspens",
-            "checkout_note": "Cliquez sur le bouton ci-dessous pour nous informer que vous partez.",
-            "complete_checkout": "Terminer le Check Out",
-            
-            // Map tab
-            "city_map": "Plan de la Ville"
-        }
+    // Tabs
+    "tab_info": "Pour Vous",
+    "tab_breakfast": "Petit-déjeuner",
+    "tab_photos": "Envoyer Documents",
+    "tab_map": "Plan de la Ville",
+    "tab_checkout": "Départ",
+    // Info tab
+    "general_info": "Informations Générales",
+    "checkin": "Arrivée:",
+    "checkout": "Départ:",
+    "address": "Adresse:",
+    "contact_us": "Contactez-nous",
+    "additional_services": "Services Supplémentaires",
+    "bike_rental": "Location de Vélos",
+    "bike_rental_details": "10€ par jour - Demandez à la réception",
+    "scuba_diving": "Plongée Sous-marine",
+    "scuba_diving_details": "50€ par personne - Réservez 24h à l'avance",
+    "explore_city": "Explorez la Ville",
+    "view_itinerary": "Voir l'Itinéraire",
+    // Breakfast tab
+    "order_breakfast": "Commandez Votre Petit-déjeuner",
+    "breakfast_instructions": "Sélectionnez les articles pour votre petit-déjeuner. Les commandes doivent être passées avant 20h00 pour une livraison le lendemain matin.",
+    "continental_breakfast": "Petit-déjeuner Continental",
+    "continental_desc": "Croissant, confiture, beurre, café ou thé",
+    "full_breakfast": "Petit-déjeuner Complet",
+    "full_desc": "Œufs, bacon, toast, tomate, champignons, café ou thé",
+    "vegan_breakfast": "Petit-déjeuner Végétalien",
+    "vegan_desc": "Toast à l'avocat, salade de fruits, yaourt végétal, café ou thé",
+    "orange_juice": "Jus d'Orange Frais",
+    "juice_desc": "300ml de jus d'orange fraîchement pressé",
+    "fruit_plate": "Assiette de Fruits",
+    "fruit_desc": "Sélection de fruits de saison",
+    "total": "Total:",
+    "place_order": "Passer la Commande",
+    // Photos tab
+    "share_photos": "Partagez Vos Photos",
+    "photos_instructions": "Téléchargez des photos de votre séjour. Nous pourrions les présenter sur notre site web (avec votre permission)!",
+    "add_photos": "Ajouter des Photos",
+    "share_photos_btn": "Partager des Photos via WhatsApp",
+    // Checkout tab
+    "checkout_title": "Départ",
+    "checkout_instructions": "Prêt à partir? Veuillez vous assurer que vous avez:",
+    "checkout_item1": "Rendu toutes les clés et cartes d'accès",
+    "checkout_item2": "Récupéré tous vos effets personnels",
+    "checkout_item3": "Réglé tous les paiements en suspens",
+    "checkout_note": "Cliquez sur le bouton ci-dessous pour nous informer que vous partez.",
+    "complete_checkout": "Finaliser le Départ",
+    // Map tab
+    "city_map": "Plan de la Ville"
+},
+        "de": {
+    // Tabs
+    "tab_info": "Für Sie",
+    "tab_breakfast": "Frühstück",
+    "tab_photos": "Dokumente Senden",
+    "tab_map": "Stadtplan",
+    "tab_checkout": "Auschecken",
+    // Info tab
+    "general_info": "Allgemeine Informationen",
+    "checkin": "Check-in:",
+    "checkout": "Check-out:",
+    "address": "Adresse:",
+    "contact_us": "Kontaktieren Sie uns",
+    "additional_services": "Zusätzliche Dienstleistungen",
+    "bike_rental": "Fahrradverleih",
+    "bike_rental_details": "10€ pro Tag - Fragen Sie an der Rezeption",
+    "scuba_diving": "Tauchen",
+    "scuba_diving_details": "50€ pro Person - Buchen Sie 24 Stunden im Voraus",
+    "explore_city": "Erkunden Sie die Stadt",
+    "view_itinerary": "Reiseplan Anzeigen",
+    // Breakfast tab
+    "order_breakfast": "Bestellen Sie Ihr Frühstück",
+    "breakfast_instructions": "Wählen Sie Artikel für Ihr Frühstück. Bestellungen müssen bis 20:00 Uhr für die Lieferung am nächsten Morgen aufgegeben werden.",
+    "continental_breakfast": "Kontinentales Frühstück",
+    "continental_desc": "Croissant, Marmelade, Butter, Kaffee oder Tee",
+    "full_breakfast": "Vollständiges Frühstück",
+    "full_desc": "Eier, Speck, Toast, Tomate, Pilze, Kaffee oder Tee",
+    "vegan_breakfast": "Veganes Frühstück",
+    "vegan_desc": "Avocado-Toast, Obstsalat, pflanzlicher Joghurt, Kaffee oder Tee",
+    "orange_juice": "Frischer Orangensaft",
+    "juice_desc": "300ml frisch gepresster Orangensaft",
+    "fruit_plate": "Obstteller",
+    "fruit_desc": "Auswahl an saisonalem Obst",
+    "total": "Gesamt:",
+    "place_order": "Bestellung Aufgeben",
+    // Photos tab
+    "share_photos": "Teilen Sie Ihre Fotos",
+    "photos_instructions": "Laden Sie Fotos von Ihrem Aufenthalt hoch. Wir könnten sie auf unserer Website veröffentlichen (mit Ihrer Erlaubnis)!",
+    "add_photos": "Fotos Hinzufügen",
+    "share_photos_btn": "Fotos über WhatsApp Teilen",
+    // Checkout tab
+    "checkout_title": "Auschecken",
+    "checkout_instructions": "Bereit zum Auschecken? Bitte stellen Sie sicher, dass Sie:",
+    "checkout_item1": "Alle Schlüssel und Zugangskarten zurückgegeben haben",
+    "checkout_item2": "Alle persönlichen Gegenstände eingesammelt haben",
+    "checkout_item3": "Alle ausstehenden Zahlungen beglichen haben",
+    "checkout_note": "Klicken Sie auf die Schaltfläche unten, um uns mitzuteilen, dass Sie auschecken.",
+    "complete_checkout": "Auschecken Abschließen",
+    // Map tab
+    "city_map": "Stadtplan"
+},
     };
 
     // Function to update all text elements with the selected language
