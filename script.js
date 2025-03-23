@@ -112,17 +112,17 @@ function sendWhatsAppOrder() {
         return;
     }
     
-    // Get selected room
-    const roomElement = document.getElementById('room-select');
-    if (!roomElement) return;
-    
-    const room = roomElement.value;
-    // Check if user has selected a valid room (not the default empty option)
-    if (!room || room === "none") {
-        alert('Please select your room before placing the order.');
-        return;
-    }
-    
+  // Inside sendWhatsAppOrder function
+const roomElement = document.getElementById('room-select');
+if (!roomElement) return;
+
+const room = roomElement.value;
+// This check prevents ordering if "none" is selected
+if (!room || room === "none") {
+    alert('Please select your room before placing the order.');
+    return;
+}
+  
     // Get all items with quantity > 0
     const items = [];
     const itemIds = [
