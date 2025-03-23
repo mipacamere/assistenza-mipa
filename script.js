@@ -100,65 +100,70 @@ document.addEventListener('DOMContentLoaded', function() {
         orderButton.addEventListener('click', sendWhatsAppOrder);
     }
 
-    // Function to send order via WhatsApp - Modified to always use Italian
-    function sendWhatsAppOrder() {
-        // Get guest name
-        const guestNameElement = document.getElementById('guest-name');
-        if (!guestNameElement) return;
-        
-        const guestName = guestNameElement.value.trim();
-        if (!guestName) {
-            alert('Please enter your name before placing the order.');
-            return;
-        }
-        
-        // Get selected room
-        const roomElement = document.getElementById('room-select');
-        if (!roomElement) return;
-        
-        const room = roomElement.value;
-        
-        // Get all items with quantity > 0
-        const items = [];
-        const itemIds = [
-            'plain-croissant', 'chocolate-croissant', 'jam-croissant', 'cream-croissant',
-            'cappuccino', 'espresso', 'tea', 'latte', 'coffee-macchiato', 'americano'
-        ];
-        
-        let hasItems = false;
-        for (const id of itemIds) {
-            const qtyElement = document.getElementById('qty-' + id);
-            if (qtyElement) {
-                const qty = parseInt(qtyElement.textContent);
-                if (qty > 0) {
-                    // Use Italian translations for item names
-                    items.push(`${qty}x ${italianTranslations[id]}`);
-                    hasItems = true;
-                }
+// Update the sendWhatsAppOrder function to validate room selection
+function sendWhatsAppOrder() {
+    // Get guest name
+    const guestNameElement = document.getElementById('guest-name');
+    if (!guestNameElement) return;
+    
+    const guestName = guestNameElement.value.trim();
+    if (!guestName) {
+        alert('Please enter your name before placing the order.');
+        return;
+    }
+    
+    // Get selected room
+    const roomElement = document.getElementById('room-select');
+    if (!roomElement) return;
+    
+    const room = roomElement.value;
+    // Check if user has selected a valid room (not the default empty option)
+    if (!room || room === "none") {
+        alert('Please select your room before placing the order.');
+        return;
+    }
+    
+    // Get all items with quantity > 0
+    const items = [];
+    const itemIds = [
+        'plain-croissant', 'chocolate-croissant', 'jam-croissant', 'cream-croissant',
+        'cappuccino', 'espresso', 'tea', 'latte', 'coffee-macchiato', 'americano'
+    ];
+    
+    let hasItems = false;
+    for (const id of itemIds) {
+        const qtyElement = document.getElementById('qty-' + id);
+        if (qtyElement) {
+            const qty = parseInt(qtyElement.textContent);
+            if (qty > 0) {
+                // Use Italian translations for item names
+                items.push(`${qty}x ${italianTranslations[id]}`);
+                hasItems = true;
             }
         }
-        
-        if (!hasItems) {
-            alert('Please select at least one item to order.');
-            return;
-        }
-        
-        const totalElement = document.getElementById('breakfast-total');
-        if (!totalElement) return;
-        
-        const total = totalElement.textContent;
-        
-        // Create message for WhatsApp in Italian
-        let message = `${italianTranslations['breakfast_order_for']} ${guestName}, ${italianTranslations['room']} ${room}:\n`;
-        message += items.join('\n');
-        message += `\n\n${italianTranslations['total']}: ${total}`;
-        
-        // Encode message for URL
-        const encodedMessage = encodeURIComponent(message);
-        
-        // Open WhatsApp with the message
-        window.open(`https://wa.me/393339201524?text=${encodedMessage}`, '_blank');
     }
+    
+    if (!hasItems) {
+        alert('Please select at least one item to order.');
+        return;
+    }
+    
+    const totalElement = document.getElementById('breakfast-total');
+    if (!totalElement) return;
+    
+    const total = totalElement.textContent;
+    
+    // Create message for WhatsApp in Italian
+    let message = `${italianTranslations['breakfast_order_for']} ${guestName}, ${italianTranslations['room']} ${room}:\n`;
+    message += items.join('\n');
+    message += `\n\n${italianTranslations['total']}: ${total}`;
+    
+    // Encode message for URL
+    const encodedMessage = encodeURIComponent(message);
+    
+    // Open WhatsApp with the message
+    window.open(`https://wa.me/393339201524?text=${encodedMessage}`, '_blank');
+}
 
     // Photo upload
     const photoUpload = document.getElementById('photo-upload');
